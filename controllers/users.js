@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 usersRouter.post('/', async (request, response) => {
     const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{8,24}$/;
-    const {email, password} = request.body;
+    const {firstName,lastName,ci,address,email, password} = request.body;
     const userExist = await User.findOne({email});
 
     if (userExist) {
@@ -17,6 +17,10 @@ usersRouter.post('/', async (request, response) => {
     const passwordHash = await bcrypt.hash(password, saltRounds);
 
     const user = new User({
+        firstName,
+        lastName,
+        ci,
+        address,
         email,
         passwordHash
     });

@@ -7,6 +7,7 @@ const path = require('path');
 const usersRouter = require('./controllers/users');
 const cors = require('cors');
 const loginRouter = require('./controllers/login');
+const auth = require('./middleware/auth');
 
 (async () => {
     try {
