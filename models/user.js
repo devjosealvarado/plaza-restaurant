@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
     ci: String,
     address: String,
     email: String,
-    passwordHash: String
+    passwordHash: String,
+    rol: String
 });
 
 userSchema.set('toJSON', {

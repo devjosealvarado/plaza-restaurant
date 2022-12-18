@@ -31,7 +31,8 @@ app.use('/api/login', loginRouter);
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
 app.use('/signup', express.static(path.join(__dirname, 'views', 'signup')));
 app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
-app.use('/app/:id', express.static(path.join(__dirname, 'views', 'app')));
+app.use('/admin', express.static(path.join(__dirname, 'views', 'admin')));
+app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('*', express.static(path.join(__dirname, 'views', '404')));
 
 module.exports = app;

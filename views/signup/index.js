@@ -24,7 +24,8 @@ form.addEventListener('submit', async e => {
             ci: ciInput.value,
             address: addressInput.value,
             email: emailInput.value,
-            password: passwordInput.value
+            password: passwordInput.value,
+            rol:'Cliente'
         }
         
         await axios.post('/api/users', newUser);

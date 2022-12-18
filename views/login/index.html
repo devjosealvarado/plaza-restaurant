@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Iniciar sesión</title>
 </head>
 <body>
@@ -22,19 +23,19 @@
             </div>
         </div>
         <ul class="options">
-            <li class="option">Inicio</li>
-            <li class="option">Registro</li>
+            <li class="option"><a href="/">Inicio</a></li>
+            <li class="option"><a href="/signup">Registro</a></li>
         </ul>
         
         <!----------- FORMULARIO --------->
 
         <div id="form-content">
-            <form action="formulario" id="formulario">
+            <form action="form" id="form">
                 <label for="email">Correo electronico</label>
                 <input type="email" name="" id="email" placeholder="example@qwe.com">
                 <label for="password">Contraseña</label>
                 <input type="text" id="password">
-                <button type="submit" id="btnSubmit">Registrar</button>
+                <button type="submit" id="btnSubmit">Iniciar sesión</button>
             </form>
         </div>
 
