@@ -1,0 +1,76 @@
+body {
+    height: 100vh;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#contenedor {
+    display: grid;
+    /* gap: 20px; */
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
+    row-gap: 10%;
+    grid-template-rows: 3.5rem auto;
+    grid-template-areas: "header"
+                        "formulario";
+}
+
+#nav-bar {
+    grid-area: header;
+    background-color: #FFB800;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    z-index: 2;
+}
+
+#menu {
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.options {
+    position: absolute;
+    right: 0rem;
+    top: -5rem;
+    margin-top: 3.5rem;
+    background-color: aqua;
+    transition: all 0.4s ease-in-out;
+    list-style: none;
+    z-index: 1;
+    
+}
+
+.option {
+    padding: .5rem;
+}
+
+
+.show-options {
+    right: 0rem;
+    top: 0;
+}
+
+/* --------- FORMULARIO --------- */
+
+#form-content {
+    grid-area: formulario;
+    background-color: blue;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+label {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    
+}
+
+#btnSubmit {
+    margin-top: 1rem;
+}

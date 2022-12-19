@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="normalize.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Asignar Rol</title>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="nav-bar">
+            <div id="logo">
+                <p class="plaza">PLAZA RESTAURANT</p>
+            </div>
+            <div id="menu">
+                <!-- <p class="log-regis">Iniciar sesión</p>
+                <p class="log-regis">Registro</p> -->
+                <!-- <p class="log-regis">Menu</p> -->
+                <div id="button-menu"><img src="img/button-menu1.png" alt="" srcset=""></div>
+            </div>
+        </div>
+        <ul class="options">
+            <li class="option"><a href="/">Inicio</a></li>
+            <li class="option"><a href="/login">Crear plato</a></li>
+        </ul>
+        
+        <!----------- ASIGNAR ROL --------->
+
+        <h1>Asignar rol</h1>
+        <div id="form-content">
+            <form id="form">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" placeholder="José">
+                <label for="lastName">Apellido</label>
+                <input type="text" id="lastName" placeholder="Alvarado">
+                <label for="ci">Cedula</label>
+                <input type="text" id="ci" placeholder="v12345678">
+                <label for="address">Dirección</label>
+                <input type="text" id="address">
+                <label for="email">Correo electronico</label>
+                <input type="email" name="" id="email" placeholder="example@qwe.com">
+                <label for="password">Contraseña</label>
+                <input type="text" id="password">
+                <label for="passwordMatch">Repetir contraseña</label>
+                <input type="text" id="passwordMatch">
+                <button type="submit" id="btnSubmit">Registrar</button>
+            </form>
+        </div>
+
+        <!-- FOOTER --------->
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

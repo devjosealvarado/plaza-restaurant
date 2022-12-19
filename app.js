@@ -8,6 +8,8 @@ const usersRouter = require('./controllers/users');
 const cors = require('cors');
 const loginRouter = require('./controllers/login');
 const auth = require('./middleware/auth');
+const cookieParser = require('cookie-parser');
+
 
 (async () => {
     try {
@@ -20,6 +22,7 @@ const auth = require('./middleware/auth');
 
 // Middlewares
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('tiny'));
 
@@ -32,6 +35,8 @@ app.use('/', express.static(path.join(__dirname, 'views', 'home')));
 app.use('/signup', express.static(path.join(__dirname, 'views', 'signup')));
 app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
 app.use('/admin', express.static(path.join(__dirname, 'views', 'admin')));
+app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
+app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('*', express.static(path.join(__dirname, 'views', '404')));
 

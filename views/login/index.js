@@ -18,12 +18,16 @@ form.addEventListener('submit', async e => {
         };
         const { data } = await axios.post('/api/login/', credentials);
         // window.location.pathname = `/home/${data}`;
-        if (data === '639e152b4a234f0a94ee84ec') {
-            window.location.pathname = `/home/${data}`;
-        } else {
-            window.location.pathname = /signup/;
+        console.log(credentials);
+        if (data.rol === 'Admin') {
+            window.location.pathname = `/admin`;
+        } else if (data.rol === 'Encargado') {
+            window.location.pathname = `/encargado/${data.id}`;
+        } 
+        else {
+            window.location.pathname = `/home/${data.id}`;
         }
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.log(error.response.data.error);
     }

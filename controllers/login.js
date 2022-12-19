@@ -28,7 +28,7 @@ loginRouter.post('/', async (request, response) => {
         httpOnly: true
     })
 
-    response.status(200).json(userExist._id);
+    response.status(200).json(userExist);
 });
 
 module.exports = loginRouter;
