@@ -28,7 +28,7 @@ form.addEventListener('submit', async e => {
             rol:'Encargado'
         }
         
-        await axios.post('/api/users', newUser);
+        await axios.post('/api/users', newUser, {withCredentials: true});
         // window.location.pathname = '/login';
     } catch (error) {
         // console.log(error.response);

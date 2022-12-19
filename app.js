@@ -7,6 +7,7 @@ const path = require('path');
 const usersRouter = require('./controllers/users');
 const cors = require('cors');
 const loginRouter = require('./controllers/login');
+const rolesRouter = require('./controllers/roles')
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
 
@@ -29,6 +30,7 @@ app.use(morgan('tiny'));
 // Routes backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/users',auth, usersRouter);
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
