@@ -33,4 +33,18 @@ usersRouter.post('/', async (request, response) => {
 
 });
 
+usersRouter.get('/', async (request, response) => {
+    // COMPRUEBA QUE EL USUARIO INICIO SESION
+    const { user } = request;
+
+    if (!user) {
+        return response.sendStatus(401);
+    }
+
+    const contactos = await Contactos.find({user: user._id});
+
+    response.status(200).json(contactos);
+
+});
+
 module.exports = usersRouter;

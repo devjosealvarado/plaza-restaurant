@@ -30,14 +30,14 @@ app.use(morgan('tiny'));
 // Routes backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/users',auth, usersRouter);
+app.use('/api/roles2',auth, rolesRouter);
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
 app.use('/signup', express.static(path.join(__dirname, 'views', 'signup')));
 app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
-app.use('/admin', express.static(path.join(__dirname, 'views', 'admin')));
-app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
+app.use('/admin/:id', express.static(path.join(__dirname, 'views', 'admin')));
+app.use('/admin/:id/rol/:id', express.static(path.join(__dirname, 'views', 'admin','rol')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('*', express.static(path.join(__dirname, 'views', '404')));

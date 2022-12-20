@@ -17,10 +17,11 @@ form.addEventListener('submit', async e => {
             password: passwordInput.value
         };
         const { data } = await axios.post('/api/login/', credentials);
+         
         // window.location.pathname = `/home/${data}`;
         console.log(credentials);
         if (data.rol === 'Admin') {
-            window.location.pathname = `/admin`;
+            window.location.pathname = `/admin/${data.id}`;
         } else if (data.rol === 'Encargado') {
             window.location.pathname = `/encargado/${data.id}`;
         } 
@@ -28,7 +29,10 @@ form.addEventListener('submit', async e => {
             window.location.pathname = `/home/${data.id}`;
         }
         // console.log(data);
+                
     } catch (error) {
         console.log(error.response.data.error);
     }
+    
 })
+
