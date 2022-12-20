@@ -35,15 +35,14 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.get('/', async (request, response) => {
     // COMPRUEBA QUE EL USUARIO INICIO SESION
-    const { user } = request;
 
-    if (!user) {
+    if (request.cookies.accessToken === undefined) {
         return response.sendStatus(401);
     }
 
-    const contactos = await Contactos.find({user: user._id});
+    const encargados = await User.find({rol: 'Encargado'});
 
-    response.status(200).json(contactos);
+    response.status(200).json(encargados);
 
 });
 
