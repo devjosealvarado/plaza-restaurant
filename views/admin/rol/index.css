@@ -8,10 +8,11 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    row-gap: 10vh;
-    grid-template-rows: 3.5rem 100vh auto;
+    row-gap: 2vh;
+    grid-template-rows: 3.5rem auto auto auto;
     grid-template-areas: "header"
                         "formulario"
+                        "btn-encargados"
                         "encargados";
 }
 
@@ -80,4 +81,12 @@ label {
 
 #roles {
     grid-area: encargados;
+}
+
+#roles .rol {
+    overflow: none;
+}
+
+#show-encargados {
+    grid-area: btn-encargados;
 }

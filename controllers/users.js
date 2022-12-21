@@ -6,6 +6,7 @@ usersRouter.post('/', async (request, response) => {
     const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{8,24}$/;
     const {firstName,lastName,ci,address,email, password,rol} = request.body;
     const userExist = await User.findOne({email});
+    console.log(request);
 
     if (userExist) {
         return response.status(400).json({error: 'El email ya existe'});
@@ -23,8 +24,8 @@ usersRouter.post('/', async (request, response) => {
         address,
         email,
         passwordHash,
-        rol
-        
+        rol,
+         
     });
 
     await user.save();
