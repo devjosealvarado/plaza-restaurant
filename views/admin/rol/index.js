@@ -46,7 +46,7 @@ form.addEventListener ('submit', async e => {
 		
             const rol = document.createElement('li');
 		rol.innerHTML =`
-			<li class="contacto-item" id="${data.id}">
+			<li class="contacto-item" id="${userh.id}">
 				<p>${nombre}</p>
 				<p>${apellido}</p>
                 <p>${ci}</p>
@@ -91,7 +91,7 @@ const getEncargados = async () => {
     data.forEach(userh => {
         const rol = document.createElement('li');
 		rol.innerHTML =`
-			<li class="contacto-item" id="${data.id}">
+			<li class="contacto-item" id="${userh.id}">
 				<p>${userh.firstName}</p>
 				<p>${userh.lastName}</p>
                 <p>${userh.ci}</p>
