@@ -22,7 +22,7 @@ btnMenu.addEventListener('click', e => {
 
 
 const getEncargados = async () => {
-        
+
     const newUser = {
         firstName: nameInput.value,
         lastName: lastNameInput.value,
@@ -49,10 +49,10 @@ const getEncargados = async () => {
 				<button class="btn-deleted">✖</button>
 			</li>
 		`;
-		
+
 		roles.append(rol);
     });
-    
+
     } finally{
     }
 };
@@ -81,8 +81,8 @@ form.addEventListener ('submit', async e => {
         // const email = emailInput.value;
         // const password = passwordInput.value;
         // console.log({data});
-        
-		
+
+
         //     const rol = document.createElement('li');
 		// rol.innerHTML =`
 		// 	<li class="contacto-item" id="${data}">
@@ -95,9 +95,9 @@ form.addEventListener ('submit', async e => {
 		// 		<button class="btn-deleted">✖</button>
 		// 	</li>
 		// `;
-		
+
 		// roles.append(rol);
-        
+
         } finally {}
 
         nameInput.value= '';
@@ -110,16 +110,18 @@ form.addEventListener ('submit', async e => {
 
 		// input_text.value = '';
 		// input_numero.value = '';
-		
-		
-		
+
+
+
 		// validationInput = false;
 		// input_numero.classList = '';
 
-    
+
 })
 
 getEncargados();
+
+// EVENTO PARA REFRESCAR LISTA DE ENCARGADOS
 
 const showEncargados = document.querySelector('#show-encargados');
 
@@ -128,4 +130,16 @@ showEncargados.addEventListener('click', e => {
         roles.removeChild(roles.firstChild)
     }
     getEncargados();
+});
+
+
+// EVENTO PARA ELIMINAR ENCARGADOS
+
+roles.addEventListener('click', async e => {
+    if (e.target.classList.contains('btn-deleted')) {
+        const id = e.target.parentElement.id;
+            e.target.parentElement.remove();
+        await axios.delete(`/api/users/${id}`)
+
+    }
 })

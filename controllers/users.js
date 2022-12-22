@@ -6,7 +6,7 @@ usersRouter.post('/', async (request, response) => {
     const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[0-9]).{8,24}$/;
     const {firstName,lastName,ci,address,email, password,rol} = request.body;
     const userExist = await User.findOne({email});
-    console.log(request);
+    
 
     if (userExist) {
         return response.status(400).json({error: 'El email ya existe'});
@@ -44,6 +44,18 @@ usersRouter.get('/', async (request, response) => {
     const encargados = await User.find({rol: 'Encargado'});
 
     response.status(200).json(encargados);
+
+});
+
+usersRouter.delete('/:id', async (request, response) => {
+    // ELIMINAR ENCARGADO
+
+    if (request.cookies.accessToken === undefined) {
+        return response.sendStatus(401);
+    }
+
+    await User.findByIdAndDelete(request.params.id);
+    response.status(204);
 
 });
 
