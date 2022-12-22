@@ -83,10 +83,10 @@ label {
     grid-area: encargados;
 }
 
-#roles .rol {
-    overflow: none;
-}
-
 #show-encargados {
     grid-area: btn-encargados;
 }
+
+/* ESTILOS PARA CADA ENCARGADO */
+
+
