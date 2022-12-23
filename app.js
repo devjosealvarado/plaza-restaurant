@@ -38,6 +38,7 @@ app.use('/signup', express.static(path.join(__dirname, 'views', 'signup')));
 app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
 app.use('/admin/:id', express.static(path.join(__dirname, 'views', 'admin')));
 app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
+app.use('/admin/add-meal', express.static(path.join(__dirname, 'views', 'admin','add-meal')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('*', express.static(path.join(__dirname, 'views', '404')));

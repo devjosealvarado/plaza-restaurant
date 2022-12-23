@@ -58,13 +58,16 @@ body {
 
 #form-content {
     grid-area: formulario;
-    background-color: blue;
+    
 }
 
 #form {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    margin: 1rem;
+    background-color: blue;
+    border-radius: 0.5rem;
 }
 
 label {
@@ -75,6 +78,7 @@ label {
 
 #btnSubmit {
     margin-top: 1rem;
+
 }
 
 /* ----- ENCARGADOS --------*/
@@ -83,8 +87,16 @@ label {
     grid-area: encargados;
 }
 
-#show-encargados {
+#btn-refresh {
     grid-area: btn-encargados;
+    display: flex;
+    justify-content: center;
+}
+
+#show-encargados {
+    
+    width: 12rem;
+
 }
 
 /* ESTILOS PARA CADA ENCARGADO */
