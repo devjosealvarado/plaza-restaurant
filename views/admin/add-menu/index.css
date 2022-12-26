@@ -8,11 +8,10 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    grid-template-rows: 3.5rem 1fr 1fr 1fr;
+    row-gap: 2vh;
+    grid-template-rows: 3.5rem auto;
     grid-template-areas: "header"
-                        "form-menu"
-                        "menu"
-                        "footer";
+                        "formulario";
 }
 
 #nav-bar {
@@ -40,6 +39,7 @@ body {
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
+    border-radius: 0 0.3rem;
     
 }
 
@@ -53,6 +53,32 @@ body {
     top: 0;
 }
 
-/* --------- Form para agregar menu -------- */
+/* --------- FORMULARIO --------- */
 
+#form-content {
+    grid-area: formulario;
+    /* background-color: rgb(156, 156, 156); */
+}
 
+#form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgb(138, 138, 138);
+    border-radius: 0.5rem;
+}
+
+label {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    
+}
+
+#image {
+    width: 10rem;
+}
+
+#btnSubmit {
+    margin-top: 1rem;
+}

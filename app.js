@@ -10,6 +10,8 @@ const loginRouter = require('./controllers/login');
 const rolesRouter = require('./controllers/roles2')
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 
 (async () => {
