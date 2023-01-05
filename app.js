@@ -10,8 +10,8 @@ const loginRouter = require('./controllers/login');
 const rolesRouter = require('./controllers/roles2')
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
-const multer = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const multer = require('multer');
+const menuRouter = require('./controllers/menu');
 
 
 (async () => {
@@ -28,11 +28,18 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('tiny'));
+app.use(express.urlencoded({extended: false}));
+multer.diskStorage({
+    filename: (req, file, cb, filename)
+})
+app.use(multer({dest: path.join(__dirname, 'views/img/uploads')}).single('image'));
+
 
 // Routes backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/roles2', rolesRouter);
+app.use('/api/menu', menuRouter);
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
