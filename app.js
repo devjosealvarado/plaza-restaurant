@@ -5,6 +5,7 @@ const moongose = require('mongoose');
 const morgan = require('morgan');
 const path = require('path');
 const usersRouter = require('./controllers/users');
+const usersEncargadosRouter = require('./controllers/usersEncargados');
 const cors = require('cors');
 const loginRouter = require('./controllers/login');
 // const rolesRouter = require('./controllers/roles2')
@@ -75,12 +76,13 @@ app.use(morgan('tiny'));
 
 
 // Routes backend
+app.use('/api/img', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 // app.use('/api/roles2', rolesRouter);
 app.use('/api/menus', menuRouter);
-app.use('/api/ordenes', ordenRouter);
-
+app.use('/api/ordenes', auth, ordenRouter);
+app.use('/api/usersEncargados', auth, usersEncargadosRouter);
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
@@ -92,6 +94,6 @@ app.use('/admin/add-menu', express.static(path.join(__dirname, 'views', 'admin',
 app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
-app.use('*', express.static(path.join(__dirname, 'views', '404')));
+// app.use('*', express.static(path.join(__dirname, 'views', '404')));
 
 module.exports = app;

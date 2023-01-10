@@ -1,0 +1,5 @@
+const file = fileInputRef.current.files[0];
+const fileFormData = new FormData();
+fileFormData.append('file', file);
+fileFormData.append('name', fileName)
+const { data } = await axiosPrivate.post('/api/fi/', fileFormData,)

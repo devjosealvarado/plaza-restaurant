@@ -68,9 +68,11 @@ form.addEventListener ('submit', async e => {
             rol:'Encargado'
         }
         try {
-        const { data } = await axios.post('/api/users', newUser, { withCredentials: true});
+        const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
             if (data === 'Created') {
                 alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
+            } else {
+                window.location.pathname='/login';
             }
 		// const nombre = nameInput.value;
 		// const apellido = lastNameInput.value;

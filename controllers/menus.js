@@ -11,17 +11,24 @@ const { all, request, response } = require('../app');
 
 
 menuRouter.post('/', async (request, response) => {
-    console.log(request);
+    // console.log(request);
 
     if (request.cookies.accessToken) {
         console.log('si');
 
         const {plato, price} = request.body;
+        
+        
 
         const newMenu = new Menu({
             plato,
-            price
+            price,
+            file: {}
     });
+
+    newMenu.file = {
+        url: 'api/img/a.jpg'
+    }
 
     const savedMenu = await newMenu.save();
 

@@ -1,8 +1,16 @@
 const mongoose = require('mongoose');
 
+const fileSchema = new mongoose.Schema({
+    name: String,
+    fileName: String,
+    type: String
+})
+
 const menuSchema = new mongoose.Schema({
     plato: String,
     price: String,
+
+    file: fileSchema,
     // filename: String,
     // path: String,
     // originalname: String,

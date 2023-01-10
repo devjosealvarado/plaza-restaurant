@@ -3,8 +3,9 @@ const User = require('../models/user');
 const Orden = require('../models/orden');
 
 ordenRouter.post('/', async (request, response) => {
-    const { user } = response;
+    const { user } = request;
     console.log(user);
+    
 
     if (request.cookies.accessToken) {
         console.log('si');
@@ -15,12 +16,12 @@ ordenRouter.post('/', async (request, response) => {
             mesa,
             orden,
             status,
-            // user: user._id,
+            user: user._id,
     });
-
     const savedOrden = await newOrden.save();
 
     response.status(201).json(savedOrden);
+    
     
     } else {
         console.log('no');
