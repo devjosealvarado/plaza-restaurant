@@ -9,10 +9,10 @@ btnMenu.addEventListener('click', e => {
     
 })
 
-rol.addEventListener('click', async e => {
-    try {
-        console.log(globalData);
-    } catch (error) {
+// rol.addEventListener('click', async e => {
+//     try {
+//         console.log(globalData);
+//     } catch (error) {
         
-    }
-})
+//     }
+// })

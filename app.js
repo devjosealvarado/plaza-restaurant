@@ -7,7 +7,7 @@ const path = require('path');
 const usersRouter = require('./controllers/users');
 const cors = require('cors');
 const loginRouter = require('./controllers/login');
-const rolesRouter = require('./controllers/roles2')
+// const rolesRouter = require('./controllers/roles2')
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
@@ -15,6 +15,7 @@ const menuRouter = require('./controllers/menus');
 const uuid = require('uuid');
 // const upload = multer({ dest: 'uploads/' });
 const Menu = require('./models/menu');
+const ordenRouter = require('./controllers/ordenes');
 
 
 
@@ -76,8 +77,9 @@ app.use(morgan('tiny'));
 // Routes backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
-app.use('/api/roles2', rolesRouter);
+// app.use('/api/roles2', rolesRouter);
 app.use('/api/menus', menuRouter);
+app.use('/api/ordenes', ordenRouter);
 
 
 // Routes frontend
@@ -87,6 +89,7 @@ app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
 app.use('/admin/:id', express.static(path.join(__dirname, 'views', 'admin')));
 app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
 app.use('/admin/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
+app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('*', express.static(path.join(__dirname, 'views', '404')));

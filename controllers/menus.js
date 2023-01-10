@@ -13,16 +13,26 @@ const { all, request, response } = require('../app');
 menuRouter.post('/', async (request, response) => {
     console.log(request);
 
-    const {plato, price} = request.body;
+    if (request.cookies.accessToken) {
+        console.log('si');
 
-    const newMenu = new Menu({
-        plato,
-        price
+        const {plato, price} = request.body;
+
+        const newMenu = new Menu({
+            plato,
+            price
     });
 
     const savedMenu = await newMenu.save();
 
     response.status(201).json(savedMenu);
+    
+    } else {
+        console.log('no');
+        return response.sendStatus(401);
+    }
+
+    
 })
 
 // OBTENER PLATOS

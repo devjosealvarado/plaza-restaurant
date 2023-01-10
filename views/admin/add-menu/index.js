@@ -40,7 +40,7 @@ form.addEventListener('submit', async e => {
             price.value= '';
         } catch (error) {
             console.log(error.response);
-            alert('El plato ya existe')
+            alert('Ha ocurrido un error :(')
         }
     }
 })

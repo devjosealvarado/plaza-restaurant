@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="index.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Plaza Restaurant</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
             
         </div>
         <ul class="options">
-            <li class="option">Crear plato</li>
+            <li class="option"><a href="/encargado/9876/add-menu">Crear plato</a></li>
             <li class="option"><a href="/639e152b4a234f0a94ee84ec/rol">Asignar Rol</a></li>
         </ul>
         <!-- Background presentación -->
@@ -35,14 +36,16 @@
             <img id="back-present-img" src="img/restaurant-background1.jpg" alt="" srcset="">
         </div>
 
-        <div id="promociones">
-            <div class="content-item">
-                <p>Hamburguesa</p>
-                <div class="image"><img src="" alt="" srcset=""></div>
-                <p>$3,99</p>
-                <button type="submit">Ordenar</button>
-                <button type="submit">Editar</button>
-            </div>
+        <div id="form-content">
+            <form  id="form">
+                <label for="mesa">Mesa</label>
+                <input type="number" id="mesa">
+                <label for="orden">Orden</label>
+                <input type="text" id="orden">
+                <!-- <label for="image">Image</label>
+                <input type="file" id="image" name="image"> -->
+                <button type="submit" id="btnSubmit">Registrar</button>
+            </form>
         </div>
 
         <div id="rol">
