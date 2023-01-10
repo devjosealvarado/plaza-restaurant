@@ -1,5 +1,3 @@
-
-
 const btnMenu = document.querySelector('#button-menu');
 const options = document.querySelector('.options');
 

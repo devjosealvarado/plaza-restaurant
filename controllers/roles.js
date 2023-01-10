@@ -37,7 +37,7 @@ rolesRouter.get('/', async (request, response) => {
     if (!user) {
         return response.sendStatus(401);
     }
-
+    
     const roles = await Roles.find({user: user._id});
 
     response.status(200).json(roles);
@@ -47,7 +47,7 @@ rolesRouter.get('/', async (request, response) => {
 rolesRouter.delete('/:id', async (request, response) => {
     // ELIMINA TAREAS
     const { user } = request;
-
+    console.log(request);
     if (!user) {
         return response.sendStatus(401);
     }

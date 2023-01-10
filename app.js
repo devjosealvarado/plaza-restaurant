@@ -11,7 +11,11 @@ const rolesRouter = require('./controllers/roles2')
 const auth = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const menuRouter = require('./controllers/menu');
+const menuRouter = require('./controllers/menus');
+const uuid = require('uuid');
+// const upload = multer({ dest: 'uploads/' });
+const Menu = require('./models/menu');
+
 
 
 (async () => {
@@ -28,18 +32,53 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(morgan('tiny'));
-app.use(express.urlencoded({extended: false}));
-multer.diskStorage({
-    filename: (req, file, cb, filename)
-})
-app.use(multer({dest: path.join(__dirname, 'views/img/uploads')}).single('image'));
+
+
+
+// const upload = multer({ dest: 'uploads/' })
+
+
+
+// app.post('/profile', upload.single('avatar'), async function (req, res, next) {
+//   await console.log(req.body.plato);
+//     // req.file es el `avatar` del archivo
+//   // req.body tendrá los campos textuales, en caso de haber alguno.
+// })
+
+
+
+
+// app.use(express.urlencoded({extended: false}));
+// const storage = multer.diskStorage({
+//     destination: path.join(__dirname, 'views/img/uploads'),
+//     filename: (req, file, cb, filename) => {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
+//     }
+
+        
+//     // uuid() + path.extname(file.originalname)
+// });
+// app.use(multer({
+//     storage: storage
+// }).single('image'));
+// const upload = multer({ storage: storage });
+
+
+// app.post('/uploads', upload.single('image'), function (req, res, next) {
+//     console.log(req);
+    
+// })
+
+
 
 
 // Routes backend
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/roles2', rolesRouter);
-app.use('/api/menu', menuRouter);
+app.use('/api/menus', menuRouter);
+
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
