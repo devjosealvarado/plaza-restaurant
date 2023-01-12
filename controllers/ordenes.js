@@ -7,7 +7,7 @@ ordenRouter.post('/', async (request, response) => {
     console.log(user);
     
 
-    if (request.cookies.accessToken) {
+    if (user) {
         console.log('si');
 
         const {mesa, orden, status} = request.body;
@@ -17,6 +17,7 @@ ordenRouter.post('/', async (request, response) => {
             orden,
             status,
             user: user._id,
+            date
     });
     const savedOrden = await newOrden.save();
 
@@ -30,5 +31,12 @@ ordenRouter.post('/', async (request, response) => {
 
     
 });
+
+ordenRouter.get('/', async (request, response) => {
+    const { user } = request;    
+    const ordenes = await Orden.find({user: user._id});
+    // console.log(ordenes);
+    response.status(200).json(ordenes);
+})
 
 module.exports = ordenRouter;

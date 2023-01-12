@@ -4,7 +4,7 @@ const User = require('../models/user');
 const auth = async (request, response, next) => {
     // console.log(request.cookies.accessToken);
     const token = request.cookies.accessToken;
-    console.log(token);
+    // console.log(token);
     if (!token) {
         // next();
         return response.sendStatus(401);

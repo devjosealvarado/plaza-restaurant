@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const ordenSchema = new mongoose.Schema({
     mesa: Number,
     orden: String,
-    status: Boolean,
+    status: String,
+    date: String,
     // filename: String,
     // path: String,
     // originalname: String,

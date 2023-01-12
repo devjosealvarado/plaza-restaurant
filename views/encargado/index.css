@@ -11,8 +11,8 @@ body {
     grid-template-rows: 3.5rem 6rem auto auto;
     grid-template-areas: "header"
                         "back-present"
-                        "promociones"
-                        "footer";
+                        "form-content"
+                        "ordenes";
 }
 
 #nav-bar {
@@ -84,4 +84,16 @@ body {
 .show-options {
     right: 0rem;
     top: 0;
+}
+
+#form-content {
+    grid-area: form-content;
+    background-color: red;
+    margin-top: 1rem;
+}
+
+#ordenes {
+    grid-area: ordenes;
+    background-color: green;
+    margin-top: 1rem;
 }

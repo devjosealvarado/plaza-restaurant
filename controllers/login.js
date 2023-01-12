@@ -7,10 +7,12 @@ const jwt = require('jsonwebtoken');
 loginRouter.post('/', async (request, response) => {
     const {email, password} = request.body;
     const userExist = await User.findOne({email});
+    console.log(userExist);
     if (!userExist) {
         return response.status(400).json({error: 'El email o contraseña son invalidos'});
     } 
-    const passwordValidation = await bcrypt.hash(password, userExist.passwordHash);
+    const passwordValidation = await bcrypt.compare(password, userExist.passwordHash);
+    console.log(passwordValidation);
     if (!passwordValidation) {
         return response.status(400).json({error: 'El email o contraseña son invalidos'})
     }

@@ -11,9 +11,11 @@ const { all, request, response } = require('../app');
 
 
 menuRouter.post('/', async (request, response) => {
-    // console.log(request);
+    const { user } = request
 
-    if (request.cookies.accessToken) {
+    // console.log(user);
+
+    if (user) {
         console.log('si');
 
         const {plato, price} = request.body;

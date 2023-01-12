@@ -22,6 +22,7 @@ form.addEventListener('submit', async e => {
     //     price: price.value,
     //     image: imageRef.value
     // }
+    
     if (plato.value === '') {
         alert('Por favor, llene los campos')
     } else {
@@ -73,9 +74,10 @@ const getMenu = async () => {
 
         
     } finally {}
-}
+};
 
 getMenu();
+// const upload = multer({ dest: 'uploads/' });
 
 // EVENTO PARA REFRESCAR LISTA DE PLATOS
 

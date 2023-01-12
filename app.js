@@ -17,6 +17,8 @@ const uuid = require('uuid');
 // const upload = multer({ dest: 'uploads/' });
 const Menu = require('./models/menu');
 const ordenRouter = require('./controllers/ordenes');
+const multerRouter = require('./controllers/multer');
+const logoutRouter = require('./controllers/logout');
 
 
 
@@ -52,7 +54,7 @@ app.use(morgan('tiny'));
 
 // app.use(express.urlencoded({extended: false}));
 // const storage = multer.diskStorage({
-//     destination: path.join(__dirname, 'views/img/uploads'),
+//     destination: path.join(__dirname, 'uploads'),
 //     filename: (req, file, cb, filename) => {
 //         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
 //     cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname))
@@ -67,7 +69,7 @@ app.use(morgan('tiny'));
 // const upload = multer({ storage: storage });
 
 
-// app.post('/uploads', upload.single('image'), function (req, res, next) {
+// app.post('/api/img', upload.single('image'), function (req, res, next) {
 //     console.log(req);
     
 // })
@@ -79,10 +81,12 @@ app.use(morgan('tiny'));
 app.use('/api/img', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/logout', logoutRouter);
 // app.use('/api/roles2', rolesRouter);
-app.use('/api/menus', menuRouter);
+app.use('/api/menus', auth, menuRouter);
 app.use('/api/ordenes', auth, ordenRouter);
 app.use('/api/usersEncargados', auth, usersEncargadosRouter);
+app.use('/api/multer', multerRouter);
 
 // Routes frontend
 app.use('/', express.static(path.join(__dirname, 'views', 'home')));
