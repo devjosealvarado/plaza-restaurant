@@ -11,9 +11,10 @@ const passwordInput = document.querySelector('#password');
 const matchInput = document.querySelector('#passwordMatch');
 const formBtn = document.querySelector('#btnSubmit');
 const roles = document.querySelector('#roles');
+const rolInput = document.querySelector('#rol')
 const contactoItem = document.querySelector('.contacto-item')
 const logoutBtn = document.querySelector('#btn-logout')
-
+console.log(rolInput.value);
 
 btnMenu.addEventListener('click', e => {
     options.classList.toggle('show-options');
@@ -33,13 +34,19 @@ const getEncargados = async () => {
         address: addressInput.value,
         email: emailInput.value,
         password: passwordInput.value,
-        rol:'Encargado'
+        rol: rolInput.value
     }
     try {
     const { data } = await axios.get('/api/users', newUser, {withCredentials: true});
     // console.log(data);
     console.log(data);
-    data.forEach(userh => {
+    let dataF = data;
+    let dataFI = dataF.filter(cargo => cargo.rol.startsWith('Encargado'));
+    let dataFII = dataF.filter(cargo => cargo.rol.startsWith('Mesero'));
+    let dataFinal = dataFI.concat(dataFII);
+    console.log(dataFinal);
+
+    dataFinal.forEach(userh => {
         const rol = document.createElement('li');
 		rol.innerHTML =`
 			<li class="contacto-item" id="${userh.id}">
@@ -48,6 +55,7 @@ const getEncargados = async () => {
                 <p>${userh.ci}</p>
                 <p>${userh.address}</p>
                 <p>${userh.email}</p>
+                <p>${userh.rol}</p>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
 			</li>
@@ -70,7 +78,7 @@ form.addEventListener ('submit', async e => {
         address: addressInput.value,
         email: emailInput.value,
         password: passwordInput.value,
-        rol:'Encargado'
+        rol:rolInput.value
     }
     try {
     const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
@@ -114,7 +122,7 @@ form.addEventListener ('submit', async e => {
     emailInput.value='';
     passwordInput.value='';
     matchInput.value= '';
-
+    rolInput.value='';
     // input_text.value = '';
     // input_numero.value = '';
 

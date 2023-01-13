@@ -28,7 +28,8 @@ ordenRouter.post('/', async (request, response) => {
             status,
             user: user._id,
             date: fechaActual,
-            time: timeActual
+            time: timeActual,
+            mesero: user.firstName + ' ' + user.lastName
     });
     const savedOrden = await newOrden.save();
 
@@ -46,7 +47,8 @@ ordenRouter.post('/', async (request, response) => {
 // OBTENER ORDENES
 
 ordenRouter.get('/', async (request, response) => {
-    const { user } = request;    
+    const { user } = request; 
+    // console.log(user);   
     const ordenes = await Orden.find({user: user._id});
     // console.log(ordenes);
     response.status(200).json(ordenes);

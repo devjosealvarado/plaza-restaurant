@@ -41,7 +41,12 @@ usersRouter.get('/', async (request, response) => {
         return response.sendStatus(401);
     }
 
-    const encargados = await User.find({rol: 'Encargado'});
+    const encargados = await User.find(this.all);
+    console.log(typeof(encargados));
+    // const meseros = await User.find({rol: 'Mesero'});
+    // const  cargos  = (encargados + ',' + meseros)
+
+    console.log(encargados);
 
     response.status(200).json(encargados);
 

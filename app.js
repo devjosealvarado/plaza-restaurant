@@ -17,6 +17,7 @@ const uuid = require('uuid');
 // const upload = multer({ dest: 'uploads/' });
 const Menu = require('./models/menu');
 const ordenRouter = require('./controllers/ordenes');
+const ordenEncargadoRouter = require('./controllers/ordenesEncargado')
 const multerRouter = require('./controllers/multer');
 const logoutRouter = require('./controllers/logout');
 
@@ -85,7 +86,9 @@ app.use('/api/logout', logoutRouter);
 // app.use('/api/roles2', rolesRouter);
 app.use('/api/menus', auth, menuRouter);
 app.use('/api/ordenes', auth, ordenRouter);
+app.use('/api/ordenesEncargado', auth, ordenEncargadoRouter);
 app.use('/api/usersEncargados', auth, usersEncargadosRouter);
+
 app.use('/api/multer', multerRouter);
 
 // Routes frontend
@@ -95,6 +98,8 @@ app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
 app.use('/admin/:id', express.static(path.join(__dirname, 'views', 'admin')));
 app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
 app.use('/admin/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
+app.use('/mesero/:id/add-menu', express.static(path.join(__dirname, 'views', 'mesero','add-menu')));
+app.use('/mesero/:id', express.static(path.join(__dirname, 'views', 'mesero')));
 app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 'encargado','add-menu')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));

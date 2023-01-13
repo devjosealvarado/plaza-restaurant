@@ -6,6 +6,7 @@ const ordenSchema = new mongoose.Schema({
     status: String,
     date: String,
     time: String,
+    mesero: String,
     // filename: String,
     // path: String,
     // originalname: String,

@@ -33,8 +33,7 @@ form.addEventListener('submit', async e => {
             // console.log(ordenLi);
             ordenLi.innerHTML = `
                 <li class="orden-item" id="${data.id}">
-				<p>Mesero:${data.mesero}</p>
-                <p>Mesa: </p>
+				<p>Mesa: </p>
                 <p>${data.mesa}</p>
                 <p>Orden: </p>
 				<p>${data.orden}</p>
@@ -60,7 +59,7 @@ const getOrdenes = async () => {
     }
 
     try {
-        const { data } = await axios.get('/api/ordenesEncargado', newOrden);
+        const { data } = await axios.get('/api/ordenes', newOrden);
     console.log(data);
 
         data.forEach(ordenItem => {
@@ -68,8 +67,7 @@ const getOrdenes = async () => {
             // console.log(ordenLi);
             ordenLi.innerHTML = `
                 <li class="orden-item" id="${ordenItem.id}">
-				<p>Mesero:${ordenItem.mesero}</p>
-                <p>Mesa: </p>
+				<p>Mesa: </p>
                 <p>${ordenItem.mesa}</p>
                 <p>Orden: </p>
 				<p>${ordenItem.orden}</p>
@@ -90,7 +88,7 @@ const getOrdenes = async () => {
 };
 
 getOrdenes();
-
+// <p class="estado">${e.target.parentElement.children[6].innerHTML}</p>
 // EVENTO PARA EDITAR COMIDAS
 
 contentOrdenes.addEventListener('click', async e => {
@@ -99,13 +97,12 @@ contentOrdenes.addEventListener('click', async e => {
 		const ordenItem = e.target.parentElement;
         console.log(e.target.parentElement);
         ordenItem.innerHTML = `
-        <p>${e.target.parentElement.children[0].innerHTML}</p>
         <p>Mesa: </p>
-        <input type="number" class="mesa-edit" value="${e.target.parentElement.children[2].innerHTML}">
+        <input type="number" class="mesa-edit" value="${e.target.parentElement.children[1].innerHTML}">
         <p>Orden: </p>
-        <input type="text" class="orden-edit" value="${e.target.parentElement.children[4].innerHTML}">
-        <p class="fecha">${e.target.parentElement.children[5].innerHTML}</p>
-        <p class="hora">${e.target.parentElement.children[6].innerHTML}</p>
+        <input type="text" class="orden-edit" value="${e.target.parentElement.children[3].innerHTML}">
+        <p class="fecha">${e.target.parentElement.children[4].innerHTML}</p>
+        <p class="hora">${e.target.parentElement.children[5].innerHTML}</p>
         <p>Estado: </p>
         <select name="" id="" class="status">
                 <option value="Pendiente">Pendiente</option>
@@ -131,7 +128,6 @@ contentOrdenes.addEventListener('click', async e => {
         let isValid = PRICE_REGEX.test(mesa.value);
         if (isValid == true) {
             ordenItem.innerHTML = `
-            <p>${e.target.parentElement.children[0].innerHTML}</p>
             <p>Mesa: </p>
             <p>${mesa.value}</p>
             <p>Orden: </p>

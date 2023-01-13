@@ -24,8 +24,9 @@ form.addEventListener('submit', async e => {
             window.location.pathname = `/admin/${data.id}`;
         } else if (data.rol === 'Encargado') {
             window.location.pathname = `/encargado/${data.id}`;
-        } 
-        else {
+        } else if (data.rol === 'Mesero') {
+            window.location.pathname = `/mesero/${data.id}`;
+        } else {
             window.location.pathname = `/cliente/${data.id}`;
         }
         // console.log(data);
