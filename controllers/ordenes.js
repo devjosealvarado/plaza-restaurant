@@ -4,7 +4,7 @@ const Orden = require('../models/orden');
 
 ordenRouter.post('/', async (request, response) => {
     const { user } = request;
-    console.log(user);
+    // console.log(user);
     const fecha = new Date();
     // console.log(typeof(fecha));
     const fechaYear = fecha.getFullYear().toString();
@@ -18,7 +18,7 @@ ordenRouter.post('/', async (request, response) => {
     const fechaActual = fechaDay + '-' + fechaMes + '-' + fechaYear;
     const timeActual = fechaHour + ':' + fechaMinutes + ':' + fechaSeconds;
     if (user) {
-        console.log('si');
+        // console.log('si');
 
         const {mesa, orden, status} = request.body;
 
@@ -56,28 +56,53 @@ ordenRouter.get('/', async (request, response) => {
 
 ordenRouter.patch('/:id', async (request, response) => {
     // EDITA EL CHECK
-    // const { user } = request;
-
-
-    // if (!user) {
-    //     return response.sendStatus(401);
-    // }
 
     const { user } = request;
-    console.log(user);
-
-    console.log();
+ 
     
     if (user) {
 
         const {mesa, orden, status} = request.body;
-        console.log(mesa, orden, status );
-        // await Orden.findByIdAndUpdate(request.params.id, {plato, price});
-        // response.sendStatus(200);
+        console.log(mesa, orden );
+        await Orden.findByIdAndUpdate(request.params.id, {mesa, orden, status});
+        response.sendStatus(200);
     } else {
         return response.sendStatus(401);
     }
     
 });
+
+// ELIMINAR ORDENES
+
+ordenRouter.delete('/:id', async (request, response) => {
+    // console.log(request.cookies);
+    const { user } = request;
+    // console.log(user);
+
+    // console.log(request.cookies.accessToken);
+    
+    if (user) {
+        await Orden.findByIdAndDelete(request.params.id);
+        console.log(request.params);
+        response.sendStatus(204);
+    } else {
+        console.log('no');
+        return response.sendStatus(401);
+    }
+
+    // if(request.cookies) {
+    //     console.log('sin permiso');
+    // }
+
+    // const { user } = request;
+
+    // if (!user) {
+    //     return response.sendStatus(401);
+    // }
+
+    
+
+    
+})
 
 module.exports = ordenRouter;

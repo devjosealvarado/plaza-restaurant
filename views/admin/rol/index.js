@@ -57,64 +57,67 @@ const getEncargados = async () => {
 
 form.addEventListener ('submit', async e => {
     e.preventDefault();
-
-        const newUser = {
-            firstName: nameInput.value,
-            lastName: lastNameInput.value,
-            ci: ciInput.value,
-            address: addressInput.value,
-            email: emailInput.value,
-            password: passwordInput.value,
-            rol:'Encargado'
+    
+    const newUser = {
+        firstName: nameInput.value,
+        lastName: lastNameInput.value,
+        ci: ciInput.value,
+        address: addressInput.value,
+        email: emailInput.value,
+        password: passwordInput.value,
+        rol:'Encargado'
+    }
+    try {
+    const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
+        // console.log(data);
+        if (data === 'Created') {
+            alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
+        } else {
+            window.location.pathname='/login';
         }
-        try {
-        const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
-            if (data === 'Created') {
-                alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
-            } else {
-                window.location.pathname='/login';
-            }
-		// const nombre = nameInput.value;
-		// const apellido = lastNameInput.value;
-        // const ci = ciInput.value;
-        // const address = addressInput.value;
-        // const email = emailInput.value;
-        // const password = passwordInput.value;
-        // console.log({data});
+    // const nombre = nameInput.value;
+    // const apellido = lastNameInput.value;
+    // const ci = ciInput.value;
+    // const address = addressInput.value;
+    // const email = emailInput.value;
+    // const password = passwordInput.value;
+    // console.log({data});
 
 
-        //     const rol = document.createElement('li');
-		// rol.innerHTML =`
-		// 	<li class="contacto-item" id="${data}">
-		// 		<p>${nombre}</p>
-		// 		<p>${apellido}</p>
-        //         <p>${ci}</p>
-        //         <p>${address}</p>
-        //         <p>${email}</p>
-		// 		<button class="btn-edit">✎</button>
-		// 		<button class="btn-deleted">✖</button>
-		// 	</li>
-		// `;
+    //     const rol = document.createElement('li');
+    // rol.innerHTML =`
+    // 	<li class="contacto-item" id="${data}">
+    // 		<p>${nombre}</p>
+    // 		<p>${apellido}</p>
+    //         <p>${ci}</p>
+    //         <p>${address}</p>
+    //         <p>${email}</p>
+    // 		<button class="btn-edit">✎</button>
+    // 		<button class="btn-deleted">✖</button>
+    // 	</li>
+    // `;
 
-		// roles.append(rol);
+    // roles.append(rol);
 
-        } finally {}
+    } finally {}
 
-        nameInput.value= '';
-        lastNameInput.value='';
-        ciInput.value='';
-        addressInput.value='';
-        emailInput.value='';
-        passwordInput.value='';
-        matchInput.value= '';
+    nameInput.value= '';
+    lastNameInput.value='';
+    ciInput.value='';
+    addressInput.value='';
+    emailInput.value='';
+    passwordInput.value='';
+    matchInput.value= '';
 
-		// input_text.value = '';
-		// input_numero.value = '';
+    // input_text.value = '';
+    // input_numero.value = '';
 
 
 
-		// validationInput = false;
-		// input_numero.classList = '';
+    // validationInput = false;
+    // input_numero.classList = '';
+
+
 
 
 })
