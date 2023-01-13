@@ -57,10 +57,9 @@ menuRouter.get('/', async (request, response) => {
 
 menuRouter.delete('/:id', async (request, response) => {
     // console.log(request.cookies);
+    const { user } = request;
     
-    console.log(request.cookies.accessToken);
-    
-    if (request.cookies.accessToken) {
+    if (user) {
         await Menu.findByIdAndDelete(request.params.id);
         console.log(request.params);
         response.sendStatus(204);
@@ -88,16 +87,9 @@ menuRouter.delete('/:id', async (request, response) => {
 
 menuRouter.patch('/:id', async (request, response) => {
     // EDITA EL CHECK
-    // const { user } = request;
-
-
-    // if (!user) {
-    //     return response.sendStatus(401);
-    // }
-
-    console.log();
+    const { user } = request;
     
-    if (request.cookies.accessToken) {
+    if (user) {
         const { plato } = request.body;
         const { price } = request.body;
         await Menu.findByIdAndUpdate(request.params.id, {plato, price});

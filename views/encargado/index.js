@@ -10,6 +10,12 @@ const mesaInput = document.querySelector('#mesa');
 const ordenInput = document.querySelector('#orden');
 const formBtn = document.querySelector('#btnSubmit');
 const contentOrdenes = document.querySelector('#ordenes');
+const logoutBtn = document.querySelector('#btn-logout')
+
+logoutBtn.addEventListener('click', async e => {
+	await axios.get('/api/logout');
+	window.location.pathname ='/';
+})
 
 form.addEventListener('submit', async e => {
     e.preventDefault();

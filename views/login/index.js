@@ -26,11 +26,12 @@ form.addEventListener('submit', async e => {
             window.location.pathname = `/encargado/${data.id}`;
         } 
         else {
-            window.location.pathname = `/home/${data.id}`;
+            window.location.pathname = `/cliente/${data.id}`;
         }
         // console.log(data);
                 
     } catch (error) {
+        alert('Correo o contraseña incorrectas')
         console.log(error.response.data.error);
     }
     

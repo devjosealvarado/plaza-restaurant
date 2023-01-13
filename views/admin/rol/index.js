@@ -12,12 +12,17 @@ const matchInput = document.querySelector('#passwordMatch');
 const formBtn = document.querySelector('#btnSubmit');
 const roles = document.querySelector('#roles');
 const contactoItem = document.querySelector('.contacto-item')
+const logoutBtn = document.querySelector('#btn-logout')
 
 
 btnMenu.addEventListener('click', e => {
     options.classList.toggle('show-options');
 })
 
+logoutBtn.addEventListener('click', async e => {
+	await axios.get('/api/logout');
+	window.location.pathname ='/';
+})
 
 const getEncargados = async () => {
 
@@ -69,11 +74,12 @@ form.addEventListener ('submit', async e => {
     }
     try {
     const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
-        // console.log(data);
+        console.log(data);
         if (data === 'Created') {
             alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
         } else {
-            window.location.pathname='/login';
+            console.log('no');
+            // window.location.pathname='/login';
         }
     // const nombre = nameInput.value;
     // const apellido = lastNameInput.value;

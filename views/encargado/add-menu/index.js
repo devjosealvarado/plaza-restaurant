@@ -8,17 +8,17 @@ const imageRef = document.querySelector('#image');
 const comidas = document.querySelector('#comidas')
 const editBtn = document.querySelector('.btn-edit')
 const logoutBtn = document.querySelector('#btn-logout')
-
 const formBtn = document.querySelector('#btnSubmit');
+
+
+btnMenu.addEventListener('click', e => {
+    options.classList.toggle('show-options');
+});
 
 logoutBtn.addEventListener('click', async e => {
 	await axios.get('/api/logout');
 	window.location.pathname ='/';
-})
-
-btnMenu.addEventListener('click', e => {
-    options.classList.toggle('show-options');
-})
+});
 
 form.addEventListener('submit', async e => {
     e.preventDefault();

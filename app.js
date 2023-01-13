@@ -95,9 +95,10 @@ app.use('/login', express.static(path.join(__dirname, 'views', 'login')));
 app.use('/admin/:id', express.static(path.join(__dirname, 'views', 'admin')));
 app.use('/admin/rol', express.static(path.join(__dirname, 'views', 'admin','rol')));
 app.use('/admin/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
-app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 'admin','add-menu')));
+app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 'encargado','add-menu')));
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
+app.use('/cliente/:id', express.static(path.join(__dirname, 'views', 'cliente')));
 // app.use('*', express.static(path.join(__dirname, 'views', '404')));
 
 module.exports = app;

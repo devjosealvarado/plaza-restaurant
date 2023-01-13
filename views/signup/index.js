@@ -32,6 +32,6 @@ form.addEventListener('submit', async e => {
         window.location.pathname = '/login';
     } catch (error) {
         // console.log(error.response);
-        // alert('El email ya existe')
+        alert('El email ya existe')
     }
 })
