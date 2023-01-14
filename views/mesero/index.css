@@ -15,10 +15,14 @@ body {
                         "ordenes";
 }
 
+#contenedor h1 {
+    text-align: center;
+}
+
 #nav-bar {
     grid-area: header;
-    background-color: #FFB800;
-    color: white;
+    background-color: #fef9c3;
+    color: #78350f;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -26,9 +30,14 @@ body {
 }
 
 #menu {
-    color: white;
+    color: #78350f;
     display: flex;
     align-items: center;
+}
+
+#button-menu {
+    color: #78350f;
+    width: 2rem;
 }
 
 #back-present {
@@ -68,32 +77,98 @@ body {
     position: absolute;
     right: 0rem;
     top: -5rem;
+    width: 9rem;
     margin-top: 3.5rem;
-    background-color: aqua;
+    background-color: #14532d;
+    color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
     
 }
 
+.options .option a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.options .option a:visited {
+    color: #fff;
+}
+
 .option {
     padding: .5rem;
+    
 }
 
 
 .show-options {
     right: 0rem;
     top: 0;
+    display: flex;
+    justify-content: start;
+    
 }
+
+/* ----- FORMULARIO -------*/
 
 #form-content {
     grid-area: form-content;
-    background-color: red;
+    margin: 1rem;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #fef9c3;
+    border-radius: 2rem;
+    
+}
+
+label {
+    margin-bottom: 1rem;
     margin-top: 1rem;
+    color: #78350f;
+}
+
+#form input {
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    min-width: 15rem;
+    min-height: 2rem;
+}
+
+#btnSubmit {
+    margin-top: 1rem;
+    max-width: 10rem;
+    border: none;
+    border-radius: 1rem;
+    min-width: 8rem;
+    min-height: 3rem;
+    background-color: #14532d;
+    color: #fff;
+
 }
 
 #ordenes {
     grid-area: ordenes;
-    background-color: green;
+
     margin-top: 1rem;
+}
+
+#ordenes li {
+    list-style: none;
+}
+
+#ordenes li .orden-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d9f99d;
+    color: rgb(99, 99, 99);
+    margin: 1rem;
+    border-radius: 2rem;
 }

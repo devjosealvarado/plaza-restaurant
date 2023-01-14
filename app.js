@@ -16,6 +16,7 @@ const menuRouter = require('./controllers/menus');
 const uuid = require('uuid');
 // const upload = multer({ dest: 'uploads/' });
 const Menu = require('./models/menu');
+const menuPublicRouter = require('./controllers/menuPublic')
 const ordenRouter = require('./controllers/ordenes');
 const ordenEncargadoRouter = require('./controllers/ordenesEncargado')
 const multerRouter = require('./controllers/multer');
@@ -88,6 +89,7 @@ app.use('/api/menus', auth, menuRouter);
 app.use('/api/ordenes', auth, ordenRouter);
 app.use('/api/ordenesEncargado', auth, ordenEncargadoRouter);
 app.use('/api/usersEncargados', auth, usersEncargadosRouter);
+app.use('/api/menuPublic', menuPublicRouter);
 
 app.use('/api/multer', multerRouter);
 

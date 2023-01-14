@@ -29,7 +29,9 @@ form.addEventListener('submit', async e => {
     // }
     
     if (plato.value === '') {
-        alert('Por favor, llene los campos')
+        alert('Por favor indique el plato')
+    } else if (price.value === '') {
+        alert('Por favor indique el precio')
     } else {
         try {
             const newMenu = {

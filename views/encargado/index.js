@@ -52,15 +52,18 @@ form.addEventListener('submit', async e => {
 })
 
 const getOrdenes = async () => {
-
-    const newOrden = {
-        mesa: mesaInput.value,
-        orden: ordenInput.value
-        // image: imageRef.value
+    while (contentOrdenes.firstChild) {
+        contentOrdenes.removeChild(contentOrdenes.firstChild)
     }
 
+    // const newOrden = {
+    //     mesa: mesaInput.value,
+    //     orden: ordenInput.value
+    //     // image: imageRef.value
+    // }
+
     try {
-        const { data } = await axios.get('/api/ordenesEncargado', newOrden);
+        const { data } = await axios.get('/api/ordenesEncargado');
     console.log(data);
 
         data.forEach(ordenItem => {
@@ -88,6 +91,8 @@ const getOrdenes = async () => {
         
     } finally {}
 };
+
+let intervalID = setInterval(getOrdenes, 30000);
 
 getOrdenes();
 
