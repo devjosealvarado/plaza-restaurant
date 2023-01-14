@@ -27,6 +27,7 @@ form.addEventListener('submit', async e => {
     //     price: price.value,
     //     image: imageRef.value
     // }
+    // console.log(imageRef.files);
     
     if (plato.value === '') {
         alert('Por favor, llene los campos')
