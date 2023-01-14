@@ -104,8 +104,8 @@ body {
     
 }
 
-#btn-logout {
+/* #btn-logout {
     border-style: none;
-    background-color: aqua;
+    background:none;
     cursor: pointer;
-}
+} */
