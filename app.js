@@ -106,6 +106,7 @@ app.use('/encargado/:id/add-menu', express.static(path.join(__dirname, 'views', 
 app.use('/encargado/:id', express.static(path.join(__dirname, 'views', 'encargado')));
 app.use('/home/:id', express.static(path.join(__dirname, 'views', 'home')));
 app.use('/cliente/:id', express.static(path.join(__dirname, 'views', 'cliente')));
+app.use('/verificar/:id', express.static(path.join(__dirname, 'verificar')));
 // app.use('*', express.static(path.join(__dirname, 'views', '404')));
 
 module.exports = app;
