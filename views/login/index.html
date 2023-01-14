@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="index.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -19,7 +22,10 @@
                 <!-- <p class="log-regis">Iniciar sesión</p>
                 <p class="log-regis">Registro</p> -->
                 <!-- <p class="log-regis">Menu</p> -->
-                <div id="button-menu"><img src="img/button-menu.png" alt="" srcset=""></div>
+                <div id="button-menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                  </svg>
+                </div>
             </div>
         </div>
         <ul class="options">
@@ -31,9 +37,9 @@
 
         <div id="form-content">
             <form action="form" id="form">
-                <label for="email">Correo electronico</label>
-                <input type="email" name="" id="email" placeholder="example@qwe.com">
-                <label for="password">Contraseña</label>
+                <label for="email">Correo electronico *</label>
+                <input type="email" name="" id="email" placeholder="    example@qwe.com">
+                <label for="password">Contraseña *</label>
                 <input type="text" id="password">
                 <button type="submit" id="btnSubmit">Iniciar sesión</button>
             </form>

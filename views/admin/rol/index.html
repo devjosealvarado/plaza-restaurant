@@ -19,13 +19,16 @@
                 <!-- <p class="log-regis">Iniciar sesión</p>
                 <p class="log-regis">Registro</p> -->
                 <!-- <p class="log-regis">Menu</p> -->
-                <div id="button-menu"><img src="img/button-menu1.png" alt="" srcset=""></div>
+                <div id="button-menu"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                  </svg>
+                </div>
             </div>
         </div>
         <ul class="options">
             <li class="option"><a href="/admin/7865432">Inicio</a></li>
             <li class="option"><a href="/admin/87689/add-menu">Crear plato</a></li>
-            <li class="option"><button id="btn-logout">Cerrar sesión</button></li>
+            <li class="option"><a id="btn-logout">Cerrar sesión</a></li>
         </ul>
         
         <!----------- ASIGNAR ROL --------->
@@ -34,9 +37,9 @@
         <div id="form-content">
             <form id="form">
                 <label for="name">Nombre</label>
-                <input type="text" id="name" placeholder="José">
+                <input type="text" id="name" >
                 <label for="lastName">Apellido</label>
-                <input type="text" id="lastName" placeholder="Alvarado">
+                <input type="text" id="lastName">
                 <label for="ci">Cedula</label>
                 <input type="text" id="ci" placeholder="v12345678">
                 <label for="address">Dirección</label>

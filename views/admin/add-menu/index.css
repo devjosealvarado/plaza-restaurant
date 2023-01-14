@@ -18,8 +18,8 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #FFB800;
-    color: white;
+    background-color: #fef9c3;
+    color: #78350f;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -27,22 +27,36 @@ body {
 }
 
 #menu {
-    color: white;
+    color: #78350f;
     display: flex;
     align-items: center;
+}
+
+#button-menu {
+    color: #78350f;
+    width: 2rem;
 }
 
 .options {
     position: absolute;
     right: 0rem;
-    top: -5rem;
+    top: -7rem;
     margin-top: 3.5rem;
-    background-color: aqua;
+    background-color: #14532d;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
     border-radius: 0 0.3rem;
     
+}
+
+.options .option a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.options .option a:visited {
+    color: #fff;
 }
 
 .option {
@@ -53,6 +67,8 @@ body {
 .show-options {
     right: 0rem;
     top: 0;
+    
+    
 }
 
 /* --------- FORMULARIO --------- */
@@ -60,21 +76,31 @@ body {
 #form-content {
     grid-area: formulario;
     /* background-color: rgb(156, 156, 156); */
+    margin: 1rem;
 }
 
 #form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 1rem;
-    margin: 1rem;
-    background-color: rgb(138, 138, 138);
-    border-radius: 0.5rem;
+    background-color: #fef9c3;
+    border-radius: 2rem;
+    
+}
+
+#form input {
+    border: none;
+    border-radius: 1rem;
+    outline: none;
+    min-width: 15rem;
+    min-height: 2rem;
 }
 
 label {
     margin-bottom: 1rem;
     margin-top: 1rem;
-    
+    color: #78350f;
 }
 
 #image {
@@ -83,6 +109,14 @@ label {
 
 #btnSubmit {
     margin-top: 1rem;
+    max-width: 10rem;
+    border: none;
+    border-radius: 1rem;
+    min-width: 8rem;
+    min-height: 3rem;
+    background-color: #14532d;
+    color: #fff;
+
 }
 
 /* ----- COMIDAS --------*/
@@ -98,8 +132,12 @@ label {
 }
 
 #show-comidas {
-    
+    border: none;
     width: 12rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: #854d0e;
+    color: #fff;
 
 }
 
@@ -113,7 +151,42 @@ label {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #FFB800;
-    color: #fff;
+    background-color: #d9f99d;
+    color: #000;
     margin: 1rem;
+    border-radius: 2rem;
+
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "plato plato"
+                        "moneda precio"
+                        "editar eliminar"; */
 }
+
+/* #comidas li .comida-item .plato {
+    grid-area: plato;
+    display: flex;
+    justify-content: center;
+}
+
+#comidas li .comida-item .moneda {
+    grid-area: moneda;
+    display: flex;
+    justify-content: end;
+}
+
+#comidas li .comida-item .precio {
+    grid-area: precio;
+}
+
+#comidas li .comida-item .content-btn-edit {
+    grid-area: editar;
+    display: flex;
+    justify-content: center;
+   
+}
+
+#comidas li .comida-item .btn-deleted {
+    grid-area: eliminar;
+} */

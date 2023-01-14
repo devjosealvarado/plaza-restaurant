@@ -67,8 +67,9 @@ const getMenu = async () => {
             const comida = document.createElement('li');
             comida.innerHTML = `
                 <li class="comida-item" id="${meal.id}">
-				<p>${meal.plato}</p>
-				<p>${meal.price}</p>
+				<p class="plato">${meal.plato}</p>
+                <p class="moneda">$</p>
+				<p class="precio">${meal.price}</p>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
 			</li>
@@ -111,9 +112,11 @@ comidas.addEventListener('click', async e => {
     if (e.target.classList.contains('btn-edit')) {
         const id = e.target.parentElement.id;
 		const comidaItem = e.target.parentElement;
-        comidaItem.innerHTML = `
+       console.log('si');
+    //    console.log(e.target.parentElement.parentElement.children[0].innerHTML);
+       comidaItem.innerHTML = `
         <input type="text" class="meal-edit" value="${e.target.parentElement.children[0].innerHTML}">
-        <input type="text" class="price-edit" maxlength="11" value="${e.target.parentElement.children[1].innerHTML}">
+        <input type="text" class="price-edit" maxlength="11" value="${e.target.parentElement.children[2].innerHTML}">
         <button class="btn-editing">✔</button>
         `;
     } else if (e.target.classList.contains('btn-editing')) {
@@ -126,6 +129,7 @@ comidas.addEventListener('click', async e => {
         if (isValid == true) {
             comidaItem.innerHTML = `
             <p>${plato.value}</p>
+            <p>$</p>
             <p>${price.value}</p>
             <button class="btn-edit">✎</button>
             <button class="btn-deleted">✖</button>

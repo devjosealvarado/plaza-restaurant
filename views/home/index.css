@@ -17,8 +17,8 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #FFB800;
-    color: white;
+    background-color: #fef9c3;
+    color: #78350f;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -26,9 +26,15 @@ body {
 }
 
 #menu {
-    color: white;
+    color: #78350f;
     display: flex;
     align-items: center;
+}
+
+
+#button-menu {
+    color: #78350f;
+    width: 2rem;
 }
 
 #back-present {
@@ -69,11 +75,24 @@ body {
     right: 0rem;
     top: -5rem;
     margin-top: 3.5rem;
-    background-color: aqua;
+    background-color: #14532d;
+    color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
     
+
+}
+
+.options .option a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.options .option a:visited {
+    color: #fff;
 }
 
 .option {
@@ -84,8 +103,9 @@ body {
 .show-options {
     right: 0rem;
     top: 0;
+    
+    
 }
-
 /* #contendor {
     background-color: aquamarine;
     height: auto;
