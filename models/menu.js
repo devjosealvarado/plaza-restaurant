@@ -8,7 +8,7 @@ const fileSchema = new mongoose.Schema({
 
 const menuSchema = new mongoose.Schema({
     plato: String,
-    price: String,
+    price: Number,
 
     file: fileSchema,
     // filename: String,
