@@ -13,6 +13,7 @@ const contentOrdenes = document.querySelector('#ordenes');
 const contentCompletados = document.querySelector('#completados')
 const logoutBtn = document.querySelector('#btn-logout')
 
+
 logoutBtn.addEventListener('click', async e => {
 	await axios.get('/api/logout');
 	window.location.pathname ='/';
@@ -43,6 +44,11 @@ form.addEventListener('submit', async e => {
                 <p class="estado">${data.status}</p>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
+                <div id="content-cantidad">
+                <button class="disminuir">-</button>
+                <span name="" class="cantidad">0</span>
+                <button class="incrementar">+</button>
+                </div>
 			</li>
             `;
 
@@ -87,8 +93,25 @@ const getOrdenes = async () => {
                 <p class="estado">${ordenItem.status}</p>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
+                <div id="content-cantidad">
+                <button class="disminuir">-</button>
+                <span name="" class="cantidad">0</span>
+                <button class="incrementar">+</button>
+            </div>
 			</li>
             `;
+            
+            let a = 0;
+
+            const btnDownLi = ordenLi.children[0].children[10].children[0];
+                const monto = ordenLi.children[0].children[10].children[1];
+            btnDownLi.addEventListener('click', () => {
+        a--;
+    // a = (a < 10) ? "0" + a : a;
+        monto.innerText = a;
+        console.log(a);
+
+});
 
             contentOrdenes.append(ordenLi)
             }
@@ -106,8 +129,14 @@ const getOrdenes = async () => {
                 <p class="estado">${ordenItem.status}</p>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
+                <div id="content-cantidad">
+                <button class="disminuir">-</button>
+                <span name="" class="cantidad">0</span>
+                <button class="incrementar">+</button>
+            </div>
 			</li>
             `;
+                
 
             contentCompletados.append(ordenLi)
             }
@@ -186,3 +215,34 @@ contentOrdenes.addEventListener('click', async e => {
         await axios.delete(`/api/ordenes/${id}`)
     }
 })
+
+
+// EVENTO PARA EDITAR CANTIDAD DE PEDIDOS
+
+let a = 0;
+
+const btnUp = document.querySelector('.incrementar');
+const btnDown = document.querySelector('.disminuir');
+const cantidad = document.querySelector('.cantidad');
+
+console.log(contentOrdenes.children);
+// btnUp.addEventListener('click', () => {
+//     a++;
+//     // a = (a < 10) ? "0" + a : a;
+//     cantidad.innerText = a;
+//     console.log(a);
+
+// });
+
+// btnDown.addEventListener('click', () => {
+//     if (a === 0) {
+//         // console.log('no');
+//     } else {
+//     a--;
+//     // a = (a < 10) ? "0" + a : a;
+//     cantidad.innerText = a;
+//     console.log(a);
+//     }
+
+// })
+
