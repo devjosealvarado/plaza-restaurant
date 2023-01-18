@@ -8,10 +8,12 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    grid-template-rows: 3.5rem 6rem auto auto auto;
+    grid-template-rows: 3.5rem 6rem auto auto auto auto auto;
     grid-template-areas: "header"
                         "back-present"
                         "form-content"
+                        "resultado-busqueda"
+                        "orden-preliminar"
                         "ordenes"
                         "completados";
 }
@@ -193,4 +195,18 @@ label {
     color: rgb(99, 99, 99);
     margin: 1rem;
     border-radius: 2rem;
+}
+
+/* --------- RESULTADOS BUSQUEDA ----------- */
+
+#resultado-busqueda {
+    grid-area: resultado-busqueda;
+    background-color: rgb(0, 113, 141);
+}
+
+/* --------- ORDEN PRELIMINAR --------------- */
+
+#orden-preliminar {
+    grid-area: orden-preliminar;
+    background-color: rgb(8, 151, 20);
 }

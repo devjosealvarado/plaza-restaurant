@@ -11,13 +11,91 @@ const ordenInput = document.querySelector('#orden');
 const formBtn = document.querySelector('#btnSubmit');
 const contentOrdenes = document.querySelector('#ordenes');
 const contentCompletados = document.querySelector('#completados')
-const logoutBtn = document.querySelector('#btn-logout')
+const logoutBtn = document.querySelector('#btn-logout');
+const resultadoBusqueda = document.querySelector('#resultado-busqueda');
+const ordenPreliminar = document.querySelector('#orden-preliminar');
 
+
+// ----------- EVENTO PARA CERRAR SESIÓN ---------//
 
 logoutBtn.addEventListener('click', async e => {
 	await axios.get('/api/logout');
 	window.location.pathname ='/';
 })
+
+// -------- EVENTO DE BUSQUEDA DE PLATOS --------//
+
+
+const getMenu = async () => {
+
+    // const newMenu = {
+    //     plato: plato.value,
+    //     price: price.value,
+    //     // image: imageRef.value
+    // }
+
+    
+    const { data } = await axios.get('/api/menus');
+    
+    console.log(data);
+
+        // data.forEach(meal => {
+        //     const comida = document.createElement('li');
+        //     comida.innerHTML = `
+        //         <li class="comida-item" id="${meal.id}">
+		// 		<p>${meal.plato}</p>
+		// 		<p>${meal.price}</p>
+		// 		<button class="btn-edit">✎</button>
+		// 		<button class="btn-deleted">✖</button>
+		// 	</li>
+        //     `;
+
+        //     comidas.append(comida)
+        // });
+
+    ordenInput.addEventListener('input', e => {
+        const letra = e.target.value;
+        const ChangeFirstLetter = () => {
+            return letra.charAt(0).toUpperCase() + letra.slice(1).toLowerCase();
+        }
+        
+        ChangeFirstLetter();
+        const menuFiltrado = data.filter(menu => menu.plato.startsWith(ChangeFirstLetter()));
+        console.log(menuFiltrado);
+        let arr = e.target.value.split('');
+        console.log(arr.length);
+        // resultadoBusqueda.innerHTML = ` `
+        
+        // resultadoBusqueda.innerHTML = ` `
+        menuFiltrado.forEach(meal => {
+            const comida = document.createElement('li');
+            comida.innerHTML = `
+                <li class="comida-item" id="${meal.id}">
+				<p>${meal.plato}</p>
+				<p>${meal.price}</p>
+				<button class="btn-edit">✎</button>
+				<button class="btn-deleted">✖</button>
+			</li>
+            `;
+            if (arr.length === 0) {
+                resultadoBusqueda.innerHTML = `<p>no</p>`
+                // resultadoBusqueda.innerHTML = ``
+            }
+            resultadoBusqueda.append(comida)
+            // if (!e.target.value) {
+            //     return menuFiltrado.innerHTML = ``;
+            // }
+        });
+    })
+        
+   
+};
+
+getMenu();
+
+
+
+// ------------ EVENTO PARA CREAR ORDENES ------- //
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -57,6 +135,7 @@ form.addEventListener('submit', async e => {
     } finally {}
 })
 
+
 const getOrdenes = async () => {
 
     const newOrden = {
@@ -67,7 +146,7 @@ const getOrdenes = async () => {
 
     try {
         const { data } = await axios.get('/api/ordenes', newOrden);
-    console.log(data);
+    // console.log(data);
     data.forEach(a => {
         
         // if (a.mesa === 9) {
@@ -219,13 +298,13 @@ contentOrdenes.addEventListener('click', async e => {
 
 // EVENTO PARA EDITAR CANTIDAD DE PEDIDOS
 
-let a = 0;
+// let a = 0;
 
-const btnUp = document.querySelector('.incrementar');
-const btnDown = document.querySelector('.disminuir');
-const cantidad = document.querySelector('.cantidad');
+// const btnUp = document.querySelector('.incrementar');
+// const btnDown = document.querySelector('.disminuir');
+// const cantidad = document.querySelector('.cantidad');
 
-console.log(contentOrdenes.children);
+// console.log(contentOrdenes.children);
 // btnUp.addEventListener('click', () => {
 //     a++;
 //     // a = (a < 10) ? "0" + a : a;
