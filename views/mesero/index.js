@@ -14,6 +14,7 @@ const contentCompletados = document.querySelector('#completados')
 const logoutBtn = document.querySelector('#btn-logout');
 const resultadoBusqueda = document.querySelector('#resultado-busqueda');
 const ordenPreliminar = document.querySelector('#orden-preliminar');
+const cajaResultados = document.querySelector('#caja-resultados')
 
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
@@ -37,7 +38,7 @@ const getMenu = async () => {
     
     const { data } = await axios.get('/api/menus');
     
-    console.log(data);
+    // console.log(data);
 
         // data.forEach(meal => {
         //     const comida = document.createElement('li');
@@ -55,37 +56,78 @@ const getMenu = async () => {
 
     ordenInput.addEventListener('input', e => {
         const letra = e.target.value;
-        const ChangeFirstLetter = () => {
-            return letra.charAt(0).toUpperCase() + letra.slice(1).toLowerCase();
-        }
-        
-        ChangeFirstLetter();
-        const menuFiltrado = data.filter(menu => menu.plato.startsWith(ChangeFirstLetter()));
-        console.log(menuFiltrado);
+        const menuFiltrado = data.filter(menu => menu.plato.startsWith(letra.toUpperCase()));
         let arr = e.target.value.split('');
-        console.log(arr.length);
-        // resultadoBusqueda.innerHTML = ` `
-        
-        // resultadoBusqueda.innerHTML = ` `
+        cajaResultados.innerHTML = ` `
+
+        if (arr.length === 0) {
+                cajaResultados.style.display = 'none';
+            }
+        if (arr.length > 0) {
+            cajaResultados.style.display = '';
+        }
+
+// -------- EVENTO PARA EL FILTRADO DE PLATOS ---------//
+
         menuFiltrado.forEach(meal => {
             const comida = document.createElement('li');
             comida.innerHTML = `
                 <li class="comida-item" id="${meal.id}">
 				<p>${meal.plato}</p>
 				<p>${meal.price}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-			</li>
+                <div id="content-cantidad">
+                    <button class="disminuir">-</button>
+                    <span name="" class="cantidad">1</span>
+                    <button class="incrementar">+</button>
+                </div>
+                <button class="btnAddPlato">Agregar</button>
+			    </li>
             `;
-            if (arr.length === 0) {
-                resultadoBusqueda.innerHTML = `<p>no</p>`
-                // resultadoBusqueda.innerHTML = ``
-            }
-            resultadoBusqueda.append(comida)
-            // if (!e.target.value) {
-            //     return menuFiltrado.innerHTML = ``;
-            // }
+
+            let a = 0;
+            console.log();
+            const btnDownLi = comida.children[0].children[2].children[0];
+            const btnUpLi = comida.children[0].children[2].children[2]
+            const monto = comida.children[0].children[2].children[1];
+            
+            // console.log(monto);
+
+            btnDownLi.addEventListener('click', () => {
+            a--;
+            // a = (a < 10) ? "0" + a : a;
+            monto.innerText = a;
+            });
+
+            const plato = comida.children[0].children[0].innerHTML;
+            const precio = comida.children[0].children[1].innerHTML
+            
+            btnUpLi.addEventListener('click', () => {
+                a++;
+                monto.innerText = a;
+            });
+            
+//------------EVENTO PARA AÑADIR A VISTA PREVIA DEL PLATO ---------//
+
+            // const montoModificado = comida.children[0].children[2].children[1].innerHTML;
+            const btnAddPlato = comida.children[0].children[3];
+            
+
+            btnAddPlato.addEventListener('click', e=> {
+                console.log(plato);
+                console.log(precio);
+                console.log(comida.children[0].children[2].children[1].innerHTML);
+            })
+        
+        
+            // btnAddPlato.addEventListener('click', e => {
+            // console.log('si');;
+            // })
+
+            cajaResultados.append(comida);
         });
+
+        
+        
     })
         
    
@@ -176,7 +218,7 @@ const getOrdenes = async () => {
                 <button class="disminuir">-</button>
                 <span name="" class="cantidad">0</span>
                 <button class="incrementar">+</button>
-            </div>
+                </div>
 			</li>
             `;
             

@@ -200,8 +200,14 @@ label {
 /* --------- RESULTADOS BUSQUEDA ----------- */
 
 #resultado-busqueda {
-    grid-area: resultado-busqueda;
+     grid-area: resultado-busqueda;
+    
+}
+
+#caja-resultados {
+    /* grid-area: resultado-busqueda; */
     background-color: rgb(0, 113, 141);
+    /* z-index: 10; */
 }
 
 /* --------- ORDEN PRELIMINAR --------------- */
