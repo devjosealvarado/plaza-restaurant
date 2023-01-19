@@ -15,6 +15,7 @@ const logoutBtn = document.querySelector('#btn-logout');
 const resultadoBusqueda = document.querySelector('#resultado-busqueda');
 const ordenPreliminar = document.querySelector('#orden-preliminar');
 const cajaResultados = document.querySelector('#caja-resultados')
+const montoTotal = document.querySelector('#monto-total');
 
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
@@ -84,7 +85,7 @@ const getMenu = async () => {
 			    </li>
             `;
 
-            let a = 0;
+            let a = 1;
             console.log();
             const btnDownLi = comida.children[0].children[2].children[0];
             const btnUpLi = comida.children[0].children[2].children[2]
@@ -93,9 +94,18 @@ const getMenu = async () => {
             // console.log(monto);
 
             btnDownLi.addEventListener('click', () => {
-            a--;
+            
+            const montoNumero = parseInt(monto.innerHTML, 10);
+
+            // console.log(montoNumero);
             // a = (a < 10) ? "0" + a : a;
-            monto.innerText = a;
+                if (montoNumero === 1) {
+                  
+                } else {
+                    a--;
+                    monto.innerText = a;
+                }
+            
             });
 
             const plato = comida.children[0].children[0].innerHTML;
@@ -113,12 +123,36 @@ const getMenu = async () => {
             
 
             btnAddPlato.addEventListener('click', e=> {
-                console.log(plato);
-                console.log(precio);
-                console.log(comida.children[0].children[2].children[1].innerHTML);
-            })
-        
-        
+                // console.log(plato);
+                // console.log(precio);
+                const cantidad = comida.children[0].children[2].children[1].innerHTML;
+                
+
+                const PreviewOrden = document.createElement('li');
+                PreviewOrden.innerHTML = `
+                    <li class="preview-item" id="">
+                    <p> ${cantidad + ' ' + plato}</p>
+                    <button class="btn-deleted">✖</button>
+                    <p>${precio}</p>
+                    </li>
+                `;
+
+                
+                // console.log(arrA.children[2]);
+                // let arrAFiltrado = arrA.filter(item => item.precio)
+                // console.log(arrAFiltrado);
+                // const arrayOrdenPreliminar = [].concat(arrA)
+                // console.log(arrayOrdenPreliminar[0]);
+
+                ordenPreliminar.append(PreviewOrden)
+                // ordenPreliminar.append((montoTotal.append(precio)))
+                // const precioFinal = montoTotal.innerHTML =`<p>${precio}<p>`
+                // ordenPreliminar.append(precioFinal)
+                // ordenPreliminar.append(montoTotal.innerHTML =`<p>${precio}<p>`)
+            });
+            
+            console.log(ordenPreliminar);
+    
             // btnAddPlato.addEventListener('click', e => {
             // console.log('si');;
             // })
