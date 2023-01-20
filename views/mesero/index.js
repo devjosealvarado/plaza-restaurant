@@ -133,32 +133,95 @@ const getMenu = async () => {
                     <li class="preview-item" id="">
                     <p> ${cantidad + ' ' + plato}</p>
                     <button class="btn-deleted">✖</button>
-                    <p>${precio}</p>
+                    <p class="price">${precio}</p>
                     </li>
                 `;
 
-                
-                // console.log(arrA.children[2]);
-                // let arrAFiltrado = arrA.filter(item => item.precio)
-                // console.log(arrAFiltrado);
-                // const arrayOrdenPreliminar = [].concat(arrA)
-                // console.log(arrayOrdenPreliminar[0]);
-
                 ordenPreliminar.append(PreviewOrden)
-                // ordenPreliminar.append((montoTotal.append(precio)))
-                // const precioFinal = montoTotal.innerHTML =`<p>${precio}<p>`
-                // ordenPreliminar.append(precioFinal)
-                // ordenPreliminar.append(montoTotal.innerHTML =`<p>${precio}<p>`)
             });
             
-            console.log(ordenPreliminar);
+            // console.log(ordenPreliminar);
     
             // btnAddPlato.addEventListener('click', e => {
             // console.log('si');;
             // })
 
             cajaResultados.append(comida);
-        });
+
+            btnAddPlato.addEventListener('click', e=> {
+                // console.log(ordenPreliminar.children);
+                const dataOrden = ordenPreliminar.children
+                // console.log(Object.values(dataOrden));
+                const dataOrdenArray = Object.values(dataOrden)
+                const dataOrdenArrayA = [].concat(dataOrdenArray);
+                const dataClean = dataOrdenArrayA.splice(2);
+                // console.log(dataClean);
+                const dataCleanArray = Object.values(dataClean);
+                // console.log(dataCleanArray[0].children[0].children[2]);
+                
+                const listP = document.querySelectorAll('.price');
+                // console.log(listP);
+
+                let totalNumero=0;
+                for(let i = 0; i < listP.length; i++)  {
+                    const total = listP[i].innerHTML;
+                    
+                    parseInt(total, 10)
+                    parseInt(totalNumero, 10)
+                    // console.log(a);
+                    // console.log(b);
+
+                    // a += b
+                    
+                    // console.log(a);
+                    
+                    // console.log(total);
+                    totalNumero += total
+                    // console.log(totalNumero);
+                    let posibleNumero = parseInt(totalNumero, 10);
+                    // console.log(posibleNumero);
+                    
+                    let myFunc = num => Number(num);
+                    var intArr = Array.from(String(posibleNumero), myFunc);
+                    // console.log(intArr);
+
+                    let montoFinal = 0;
+
+                    // LA QUE FUNCIONA -----------------
+                    // for(let i of intArr) {
+                    //     montoFinal+=i
+                    //     console.log(montoFinal);
+                    // }
+                    // -----------------------
+
+                    let montoFinalisimo = intArr.reduce((a,b) => a+b, 0)
+                    console.log(montoFinalisimo);
+                    montoTotal.innerHTML = `${montoFinalisimo}`
+                    
+                    // let arrNum = totalNumero.split('');
+                    // console.log(arrNum);
+
+
+                    // let montoFinal = 0;
+
+                    // for (let i of arrNum)
+
+                    // console.log(console.log(listP[i]));
+                }
+                
+
+
+
+                // dataCleanArray.forEach(price => {
+                //     // console.log(price.children[0].children[2].innerText);
+                //     const array = [].concat(price.children[0].children[2].innerText)
+                    
+
+                // })
+               
+            })
+            // console.log(ordenPreliminar.children[2]);
+        })
 
         
         
