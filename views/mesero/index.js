@@ -134,6 +134,7 @@ const getMenu = async () => {
                     <p> ${cantidad + ' ' + plato}</p>
                     <button class="btn-deleted">✖</button>
                     <p class="price">${precio}</p>
+                    <span class="cantidadTotal" style="display: none;">${cantidad}</span>
                     </li>
                 `;
 
@@ -149,64 +150,32 @@ const getMenu = async () => {
             cajaResultados.append(comida);
 
             btnAddPlato.addEventListener('click', e=> {
-                // console.log(ordenPreliminar.children);
-                const dataOrden = ordenPreliminar.children
-                // console.log(Object.values(dataOrden));
-                const dataOrdenArray = Object.values(dataOrden)
-                const dataOrdenArrayA = [].concat(dataOrdenArray);
-                const dataClean = dataOrdenArrayA.splice(2);
-                // console.log(dataClean);
-                const dataCleanArray = Object.values(dataClean);
-                // console.log(dataCleanArray[0].children[0].children[2]);
                 
                 const listP = document.querySelectorAll('.price');
+                const cantidad = document.querySelectorAll('.cantidadTotal');
+                // console.log(cantidad);
                 // console.log(listP);
 
                 let totalNumero=0;
+                let totalCantidad=0;
                 for(let i = 0; i < listP.length; i++)  {
                     const total = listP[i].innerHTML;
+
+                    const cantidadTotal = cantidad[i].innerHTML;
+                    
+                    let c = parseInt(cantidadTotal, 10)
+
+                    let h = c*total;
+                    // console.log(h);
+
                     
                     parseInt(total, 10)
                     parseInt(totalNumero, 10)
-                    // console.log(a);
-                    // console.log(b);
-
-                    // a += b
-                    
-                    // console.log(a);
-                    
-                    // console.log(total);
-                    totalNumero += total
+                    totalNumero += h;
                     // console.log(totalNumero);
-                    let posibleNumero = parseInt(totalNumero, 10);
-                    // console.log(posibleNumero);
+                    montoTotal.innerHTML = `${totalNumero}`
                     
-                    let myFunc = num => Number(num);
-                    var intArr = Array.from(String(posibleNumero), myFunc);
-                    // console.log(intArr);
-
-                    let montoFinal = 0;
-
-                    // LA QUE FUNCIONA -----------------
-                    // for(let i of intArr) {
-                    //     montoFinal+=i
-                    //     console.log(montoFinal);
-                    // }
-                    // -----------------------
-
-                    let montoFinalisimo = intArr.reduce((a,b) => a+b, 0)
-                    console.log(montoFinalisimo);
-                    montoTotal.innerHTML = `${montoFinalisimo}`
-                    
-                    // let arrNum = totalNumero.split('');
-                    // console.log(arrNum);
-
-
-                    // let montoFinal = 0;
-
-                    // for (let i of arrNum)
-
-                    // console.log(console.log(listP[i]));
+                   
                 }
                 
 
