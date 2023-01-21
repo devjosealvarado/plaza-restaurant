@@ -16,6 +16,7 @@ const resultadoBusqueda = document.querySelector('#resultado-busqueda');
 const ordenPreliminar = document.querySelector('#orden-preliminar');
 const cajaResultados = document.querySelector('#caja-resultados')
 const montoTotal = document.querySelector('#monto-total');
+const btnDeleted = document.querySelector('.btn-deleted')
 
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
@@ -36,24 +37,8 @@ const getMenu = async () => {
     //     // image: imageRef.value
     // }
 
-    
+
     const { data } = await axios.get('/api/menus');
-    
-    // console.log(data);
-
-        // data.forEach(meal => {
-        //     const comida = document.createElement('li');
-        //     comida.innerHTML = `
-        //         <li class="comida-item" id="${meal.id}">
-		// 		<p>${meal.plato}</p>
-		// 		<p>${meal.price}</p>
-		// 		<button class="btn-edit">✎</button>
-		// 		<button class="btn-deleted">✖</button>
-		// 	</li>
-        //     `;
-
-        //     comidas.append(comida)
-        // });
 
     ordenInput.addEventListener('input', e => {
         const letra = e.target.value;
@@ -90,59 +75,60 @@ const getMenu = async () => {
             const btnDownLi = comida.children[0].children[2].children[0];
             const btnUpLi = comida.children[0].children[2].children[2]
             const monto = comida.children[0].children[2].children[1];
-            
+
             // console.log(monto);
 
             btnDownLi.addEventListener('click', () => {
-            
+
             const montoNumero = parseInt(monto.innerHTML, 10);
 
             // console.log(montoNumero);
             // a = (a < 10) ? "0" + a : a;
                 if (montoNumero === 1) {
-                  
+
                 } else {
                     a--;
                     monto.innerText = a;
                 }
-            
+
             });
 
             const plato = comida.children[0].children[0].innerHTML;
             const precio = comida.children[0].children[1].innerHTML
-            
+
             btnUpLi.addEventListener('click', () => {
                 a++;
                 monto.innerText = a;
             });
-            
+
 //------------EVENTO PARA AÑADIR A VISTA PREVIA DEL PLATO ---------//
 
             // const montoModificado = comida.children[0].children[2].children[1].innerHTML;
             const btnAddPlato = comida.children[0].children[3];
-            
+
 
             btnAddPlato.addEventListener('click', e=> {
                 // console.log(plato);
                 // console.log(precio);
                 const cantidad = comida.children[0].children[2].children[1].innerHTML;
-                
+
 
                 const PreviewOrden = document.createElement('li');
                 PreviewOrden.innerHTML = `
-                    <li class="preview-item" id="">
+                    <li class="preview-item">
                     <p> ${cantidad + ' ' + plato}</p>
-                    <button class="btn-deleted">✖</button>
                     <p class="price">${precio}</p>
                     <span class="cantidadTotal" style="display: none;">${cantidad}</span>
                     </li>
                 `;
 
+                btnDeleted.style.display = '';
+                formBtn.style.display = '';
                 ordenPreliminar.append(PreviewOrden)
             });
-            
+
             // console.log(ordenPreliminar);
-    
+
             // btnAddPlato.addEventListener('click', e => {
             // console.log('si');;
             // })
@@ -150,53 +136,48 @@ const getMenu = async () => {
             cajaResultados.append(comida);
 
             btnAddPlato.addEventListener('click', e=> {
-                
+
                 const listP = document.querySelectorAll('.price');
                 const cantidad = document.querySelectorAll('.cantidadTotal');
                 // console.log(cantidad);
                 // console.log(listP);
 
                 let totalNumero=0;
-                let totalCantidad=0;
                 for(let i = 0; i < listP.length; i++)  {
                     const total = listP[i].innerHTML;
 
                     const cantidadTotal = cantidad[i].innerHTML;
-                    
+
                     let c = parseInt(cantidadTotal, 10)
 
                     let h = c*total;
-                    // console.log(h);
 
-                    
                     parseInt(total, 10)
                     parseInt(totalNumero, 10)
                     totalNumero += h;
                     // console.log(totalNumero);
-                    montoTotal.innerHTML = `${totalNumero}`
-                    
-                   
-                }
-                
+                    montoTotal.innerHTML = `<span>Monto: $${totalNumero}</span>`
+                };
+
+            });
+
+        });
 
 
 
-                // dataCleanArray.forEach(price => {
-                //     // console.log(price.children[0].children[2].innerText);
-                //     const array = [].concat(price.children[0].children[2].innerText)
-                    
+        // --------- EVENTO PARA ELIMINAR ORDEN PRELIMINAR -------
 
-                // })
-               
-            })
-            // console.log(ordenPreliminar.children[2]);
-        })
+        // previewItem.addEventListener('click', async e => {
+        //     if (e.target.classList.contains('btn-deleted')) {
+        //         const id = e.target.parentElement.id;
+        //             e.target.parentElement.parentElement.remove();
 
-        
-        
-    })
-        
-   
+        //     }
+        // })
+
+    });
+
+
 };
 
 getMenu();
@@ -239,7 +220,7 @@ form.addEventListener('submit', async e => {
             `;
 
             contentOrdenes.append(ordenLi)
-        
+
     } finally {}
 })
 
@@ -256,7 +237,7 @@ const getOrdenes = async () => {
         const { data } = await axios.get('/api/ordenes', newOrden);
     // console.log(data);
     data.forEach(a => {
-        
+
         // if (a.mesa === 9) {
         //     if (a.status === 'Pendiente') {
         //         console.log(a);;
@@ -287,7 +268,7 @@ const getOrdenes = async () => {
                 </div>
 			</li>
             `;
-            
+
             let a = 0;
 
             const btnDownLi = ordenLi.children[0].children[10].children[0];
@@ -323,13 +304,13 @@ const getOrdenes = async () => {
             </div>
 			</li>
             `;
-                
+
 
             contentCompletados.append(ordenLi)
             }
         });
 
-        
+
     } finally {}
 };
 
@@ -366,12 +347,12 @@ contentOrdenes.addEventListener('click', async e => {
         const orden = document.querySelector('.orden-edit');
         const estado = document.querySelector('.status')
         // let estado = false;
-        
+
         // console.log(estado);
         // console.log(mesa.value);
         // console.log(orden);
         // console.log(estado);
-       
+
         // console.log(hora);
         let PRICE_REGEX =  /^[0-9]/;
         let isValid = PRICE_REGEX.test(mesa.innerHTML);
@@ -393,7 +374,7 @@ contentOrdenes.addEventListener('click', async e => {
     }
 });
 
-// EVENTO PARA ELIMINAR COMIDAS
+// --------------- EVENTO PARA ELIMINAR COMIDAS -----------------
 
 contentOrdenes.addEventListener('click', async e => {
     if (e.target.classList.contains('btn-deleted')) {
@@ -403,33 +384,46 @@ contentOrdenes.addEventListener('click', async e => {
     }
 })
 
+ordenPreliminar.addEventListener('click', e => {
+    if (e.target.classList.contains('btn-deleted')) {
+        const id = e.target.parentElement.id;
+            // e.target.parentElement.remove();
+            window.location.reload()
 
-// EVENTO PARA EDITAR CANTIDAD DE PEDIDOS
+        // await axios.delete(`/api/ordenes/${id}`)
+    }
+})
 
-// let a = 0;
+// ----------- EVENTO PARA REGISTRAR ORDEN ----------------
 
-// const btnUp = document.querySelector('.incrementar');
-// const btnDown = document.querySelector('.disminuir');
-// const cantidad = document.querySelector('.cantidad');
+formBtn.addEventListener('click', e=> {
+    console.log(ordenPreliminar.children);
+    console.log(ordenPreliminar.children[1].children[0].innerHTML);
+    console.log(ordenPreliminar.children[4].children[0].children[0].innerHTML);
+    console.log(ordenPreliminar.children[4].children[0].children[1].innerHTML);
 
-// console.log(contentOrdenes.children);
-// btnUp.addEventListener('click', () => {
-//     a++;
-//     // a = (a < 10) ? "0" + a : a;
-//     cantidad.innerText = a;
-//     console.log(a);
+    const data = ordenPreliminar.children;
+    console.log(data);
 
-// });
+    for(let i = 4; i < data.length; i++)  {
+        console.log(data[i].children[0].children[0].innerHTML);
+        console.log(data[i].children[0].children[1].innerHTML);
 
-// btnDown.addEventListener('click', () => {
-//     if (a === 0) {
-//         // console.log('no');
-//     } else {
-//     a--;
-//     // a = (a < 10) ? "0" + a : a;
-//     cantidad.innerText = a;
-//     console.log(a);
-//     }
+        // const cantidadTotal = cantidad[i].innerHTML;
 
+        // let c = parseInt(cantidadTotal, 10)
+
+        // let h = c*total;
+
+        // parseInt(total, 10)
+        // parseInt(totalNumero, 10)
+        // totalNumero += h;
+        // // console.log(totalNumero);
+        // montoTotal.innerHTML = `<span>Monto: $${totalNumero}</span>`
+    };
+
+})
+
+// formBtn.addEventListener('click', e => {
+//     console.log(ordenPreliminar);
 // })
-
