@@ -397,29 +397,30 @@ ordenPreliminar.addEventListener('click', e => {
 // ----------- EVENTO PARA REGISTRAR ORDEN ----------------
 
 formBtn.addEventListener('click', e=> {
-    console.log(ordenPreliminar.children);
-    console.log(ordenPreliminar.children[1].children[0].innerHTML);
-    console.log(ordenPreliminar.children[4].children[0].children[0].innerHTML);
+    // console.log(ordenPreliminar.children);
+    // console.log(ordenPreliminar.children[1].children[0].innerHTML);
+    // console.log(ordenPreliminar.children[4].children[0].children[0].innerHTML);
     console.log(ordenPreliminar.children[4].children[0].children[1].innerHTML);
 
     const data = ordenPreliminar.children;
     console.log(data);
+    const mesa = document.querySelector('#mesa-numero');
+    
 
-    for(let i = 4; i < data.length; i++)  {
+    for (let i = 4; i < data.length; i++) {
         console.log(data[i].children[0].children[0].innerHTML);
+        const plato = data[i].children[0].children[0].innerHTML;
         console.log(data[i].children[0].children[1].innerHTML);
+        const ordenLi = document.createElement('li');
+        ordenLi.innerHTML = `<li class="orden-item" id="${data.id}">
+				<p>Mesa:  </p>
+                <p>Orden: </p>
+				<p>${plato}</p>
+               
+                </div>
+			</li>`
 
-        // const cantidadTotal = cantidad[i].innerHTML;
-
-        // let c = parseInt(cantidadTotal, 10)
-
-        // let h = c*total;
-
-        // parseInt(total, 10)
-        // parseInt(totalNumero, 10)
-        // totalNumero += h;
-        // // console.log(totalNumero);
-        // montoTotal.innerHTML = `<span>Monto: $${totalNumero}</span>`
+        contentOrdenes.append(ordenLi);
     };
 
 })
