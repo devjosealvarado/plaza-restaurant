@@ -17,7 +17,8 @@ const ordenPreliminar = document.querySelector('#orden-preliminar');
 const cajaResultados = document.querySelector('#caja-resultados')
 const montoTotal = document.querySelector('#monto-total');
 const btnDeleted = document.querySelector('.btn-deleted')
-
+const mesa = document.querySelector('#mesa-numero');
+const contentOrdenes5 = document.querySelector('#ordenes5');
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
 
@@ -116,7 +117,7 @@ const getMenu = async () => {
                 const PreviewOrden = document.createElement('li');
                 PreviewOrden.innerHTML = `
                     <li class="preview-item">
-                    <p> ${cantidad + ' ' + plato}</p>
+                    <p>${cantidad + ' ' + plato}</p>
                     <p class="price">${precio}</p>
                     <span class="cantidadTotal" style="display: none;">${cantidad}</span>
                     </li>
@@ -124,6 +125,7 @@ const getMenu = async () => {
 
                 btnDeleted.style.display = '';
                 formBtn.style.display = '';
+                mesa.style.display = '';
                 ordenPreliminar.append(PreviewOrden)
             });
 
@@ -145,7 +147,7 @@ const getMenu = async () => {
                 let totalNumero=0;
                 for(let i = 0; i < listP.length; i++)  {
                     const total = listP[i].innerHTML;
-
+                    console.log(total);
                     const cantidadTotal = cantidad[i].innerHTML;
 
                     let c = parseInt(cantidadTotal, 10)
@@ -156,7 +158,8 @@ const getMenu = async () => {
                     parseInt(totalNumero, 10)
                     totalNumero += h;
                     // console.log(totalNumero);
-                    montoTotal.innerHTML = `<span>Monto: $${totalNumero}</span>`
+                    montoTotal.innerHTML = `<span>Monto: $${totalNumero}</span>
+                                            <span style="display: none">${totalNumero}</span>`
                 };
 
             });
@@ -235,15 +238,106 @@ const getOrdenes = async () => {
 
     try {
         const { data } = await axios.get('/api/ordenes', newOrden);
-    // console.log(data);
-    data.forEach(a => {
+    console.log(data);
 
-        // if (a.mesa === 9) {
-        //     if (a.status === 'Pendiente') {
-        //         console.log(a);;
-        //     }
-        // }
-    })
+    // const busqueda = data.reduce((acc, item) => {
+    //     acc[item.mesa] = ++acc[item.mesa] || 0;
+    //     return acc;
+    // }, {});
+
+    
+    // const duplicados = data.filter( (item) => {
+    //     return busqueda[item.mesa]
+        
+    // });
+    // console.log(duplicados);
+
+    const z = () => {
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index].mesa;
+            const orden = data[index];
+            const posibleLi = document.createElement('li');
+            if (element === 5) {
+                // console.log(orden.mesa);
+                console.log(orden.orden);
+                const plato = orden.orden;
+                const price = orden.precio
+                const amount = orden.cantidad;
+                console.log(price);
+                console.log(amount);
+
+                // const e = parseInt(amount, 10)
+                // const w = parseInt(price, 10);
+                const total = price*amount;
+                console.log(total);
+                // const total = price + amount;
+                // console.log(total);
+
+                
+                posibleLi.innerHTML = `
+                <li class="orden-item">
+                    <span>${plato} x $${total}</span>
+                </li>
+
+                `;
+
+                contentOrdenes5.append(posibleLi);
+
+            }
+
+            let totalNumeroA=0;
+            const dataContentOrdenes5 = contentOrdenes5.children
+            for (let index = 1; index < dataContentOrdenes5.length; index++) {
+                const items = dataContentOrdenes5[index].children[0].children[0].innerHTML;
+                console.log(items);
+                const itemsTotal = items.split(' ');
+                const cantidadItem = itemsTotal[0];
+                const itemsTotalReverse = itemsTotal.reverse();
+                const itemsUnique = itemsTotalReverse[0];
+                const itemsArray = itemsUnique.split('$');
+                // const itemsOnlyN = itemsArray.shift();
+                console.log(itemsArray[1]);
+                let h = parseInt(cantidadItem, 10)
+                let c = parseInt(itemsArray[1], 10)
+                parseInt(totalNumeroA, 10)
+                let montoFinal = h*c;
+                
+                totalNumeroA += montoFinal;
+                console.log(totalNumeroA);
+                
+            }
+            // if (element === 7) {
+            //     // console.log(orden.mesa);
+            //     console.log(orden.orden);
+            //     const price = orden.precio
+            //     const amount = orden.cantidad;
+            //     console.log(price);
+            //     console.log(amount);
+
+            //     // const e = parseInt(amount, 10)
+            //     // const w = parseInt(price, 10);
+            //     const total = price*amount;
+            //     console.log(total);
+            //     // const total = price + amount;
+            //     // console.log(total);
+            // }
+
+        }
+    }
+
+    z();
+    
+
+    
+
+    // data.forEach(a => {
+
+    //     // if (a.mesa === 9) {
+    //     //     if (a.status === 'Pendiente') {
+    //     //         console.log(a);;
+    //     //     }
+    //     // }
+    // })
 
         data.forEach(ordenItem => {
             const ordenLi = document.createElement('li');
@@ -396,32 +490,57 @@ ordenPreliminar.addEventListener('click', e => {
 
 // ----------- EVENTO PARA REGISTRAR ORDEN ----------------
 
-formBtn.addEventListener('click', e=> {
+formBtn.addEventListener('click', async e=> {
     // console.log(ordenPreliminar.children);
     // console.log(ordenPreliminar.children[1].children[0].innerHTML);
     // console.log(ordenPreliminar.children[4].children[0].children[0].innerHTML);
-    console.log(ordenPreliminar.children[4].children[0].children[1].innerHTML);
+    // console.log(ordenPreliminar.children[4].children[0].children[1].innerHTML);
 
     const data = ordenPreliminar.children;
     console.log(data);
-    const mesa = document.querySelector('#mesa-numero');
+    
+    console.log(mesa.value);
     
 
-    for (let i = 4; i < data.length; i++) {
+    for (let i = 5; i < data.length; i++) {
         console.log(data[i].children[0].children[0].innerHTML);
         const plato = data[i].children[0].children[0].innerHTML;
         console.log(data[i].children[0].children[1].innerHTML);
-        const ordenLi = document.createElement('li');
-        ordenLi.innerHTML = `<li class="orden-item" id="${data.id}">
-				<p>Mesa:  </p>
-                <p>Orden: </p>
-				<p>${plato}</p>
-               
-                </div>
-			</li>`
+        const precioString = data[i].children[0].children[1].innerHTML;
+        console.log(montoTotal.children[1].innerHTML);
 
-        contentOrdenes.append(ordenLi);
+        let cantidadPlato = plato.split(' ')
+        const cantidadPlatoNumber = parseInt(cantidadPlato[0], 10);
+
+        const precio = parseInt(precioString, 10);
+        console.log(precio);
+        
+        
+
+        const newOrden = {
+            mesa: mesa.value,
+            orden: plato,
+            cantidad: cantidadPlatoNumber,
+            precio: precio,
+            status: 'Pendiente',
+            // date: Date.now()
+        }
+        await axios.post('/api/ordenes', newOrden, { withCredentials: true});
+        // const ordenLi = document.createElement('li');
+        // ordenLi.innerHTML = `<li class="orden-item" id="">
+		// 		<p>Mesa:  </p>
+        //         <p>Orden: </p>
+		// 		<p>${plato}</p>
+               
+        //         </div>
+		// 	</li>`
+
+        // contentOrdenes.append(ordenLi);
+
+
     };
+
+    
 
 })
 

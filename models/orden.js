@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const ordenSchema = new mongoose.Schema({
     mesa: Number,
     orden: String,
+    cantidad: Number,
+    precio: Number,
     status: String,
     date: String,
     time: String,

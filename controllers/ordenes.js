@@ -20,11 +20,13 @@ ordenRouter.post('/', async (request, response) => {
     if (user) {
         // console.log('si');
 
-        const {mesa, orden, status} = request.body;
+        const {mesa, orden, cantidad, precio, status} = request.body;
 
         const newOrden = new Orden({
             mesa,
             orden,
+            cantidad,
+            precio,
             status,
             user: user._id,
             date: fechaActual,

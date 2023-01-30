@@ -8,13 +8,14 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    grid-template-rows: 3.5rem 6rem auto auto auto auto auto;
+    grid-template-rows: 3.5rem 6rem auto auto auto auto auto auto;
     grid-template-areas: "header"
                         "back-present"
                         "form-content"
                         "resultado-busqueda"
                         "orden-preliminar"
                         "ordenes"
+                        "ordenes5"
                         "completados";
 }
 
@@ -162,11 +163,32 @@ label {
     margin-top: 1rem;
 }
 
+
 #ordenes li {
     list-style: none;
 }
 
 #ordenes li .orden-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d9f99d;
+    color: rgb(99, 99, 99);
+    margin: 1rem;
+    border-radius: 2rem;
+}
+
+#ordenes5 {
+    grid-area: ordenes5;
+    background-color: #d9f99d;
+    margin-top: 1rem;
+}
+
+#ordenes5 li {
+    list-style: none;
+}
+
+#ordenes5 li .orden-item {
     display: flex;
     flex-direction: column;
     align-items: center;
