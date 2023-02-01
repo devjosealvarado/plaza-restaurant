@@ -178,17 +178,21 @@ label {
     border-radius: 2rem;
 }
 
-#ordenes5 {
+#ordenesZ {
     grid-area: ordenes5;
+}
+
+#ordenes5, #ordenes6 {
+    
     background-color: #d9f99d;
     margin-top: 1rem;
 }
 
-#ordenes5 li {
+#ordenes5 li, #ordenes6 li {
     list-style: none;
 }
 
-#ordenes5 li .orden-item {
+#ordenes5 li .orden-item, #ordenes6 li .orden-item {
     display: flex;
     flex-direction: column;
     align-items: center;

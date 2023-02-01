@@ -17,12 +17,17 @@ const ordenPreliminar = document.querySelector('#orden-preliminar');
 const cajaResultados = document.querySelector('#caja-resultados')
 const montoTotal = document.querySelector('#monto-total');
 const montoTotal5 = document.querySelector('#monto-total5');
+const montoTotal6 = document.querySelector('#monto-total6');
 const btnDeleted = document.querySelector('.btn-deleted')
 const mesa = document.querySelector('#mesa-numero');
 const mesa5 = document.querySelector('#mesa5');
+const mesa6 = document.querySelector('#mesa6');
 const contentOrdenes5 = document.querySelector('#ordenes5');
+const contentOrdenes6 = document.querySelector('#ordenes6');
 const fecha5 = document.querySelector('#fecha5');
-const hora5 = document.querySelector('#hora5')
+const hora5 = document.querySelector('#hora5');
+const fecha6 = document.querySelector('#fecha6');
+const hora6 = document.querySelector('#hora6');
 
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
@@ -262,7 +267,12 @@ const getOrdenes = async () => {
             const element = data[index].mesa;
             const orden = data[index];
             const posibleLi = document.createElement('li');
+            const btnDeletedA = document.createElement('button')
+            btnDeletedA.setAttribute('class', 'btn-deleted');
+            btnDeletedA.innerHTML = '✖'
+            console.log(btnDeletedA);
             if (element === 5) {
+                contentOrdenes5.style.display = '';
                 // console.log(orden.mesa);
                 console.log(orden.orden);
                 const plato = orden.orden;
@@ -282,19 +292,19 @@ const getOrdenes = async () => {
                 fecha5.innerHTML = `Fecha: ${orden.date}`;
                 hora5.innerHTML = `Hora: ${orden.time}`;
                 posibleLi.innerHTML = `
-                <li class="orden-item">
+                <li class="orden-item" id="${orden.id}">
                     <span>${plato} x $${total}</span>
                 </li>
 
                 `;
-
+                
                 contentOrdenes5.append(posibleLi);
-
+                
             }
 
             let totalNumeroA=0;
             const dataContentOrdenes5 = contentOrdenes5.children
-            for (let index = 4; index < dataContentOrdenes5.length; index++) {
+            for (let index = 5; index < dataContentOrdenes5.length; index++) {
                 const items = dataContentOrdenes5[index].children[0].children[0].innerHTML;
                 console.log(items);
                 const itemsTotal = items.split(' ');
@@ -312,6 +322,62 @@ const getOrdenes = async () => {
                 totalNumeroA += montoFinal;
                 console.log(totalNumeroA);
                 montoTotal5.innerHTML = `Monto: $${totalNumeroA}`
+                
+            }
+
+            // ----------------------------------------------------
+
+            if (element === 6) {
+                // console.log(orden.mesa);
+                contentOrdenes6.style.display = '';
+                console.log(orden.orden);
+                const plato = orden.orden;
+                const price = orden.precio
+                const amount = orden.cantidad;
+                console.log(price);
+                console.log(amount);
+
+                // const e = parseInt(amount, 10)
+                // const w = parseInt(price, 10);
+                const total = price*amount;
+                console.log(total);
+                // const total = price + amount;
+                // console.log(total);
+
+                mesa6.innerHTML = `Mesa: ${orden.mesa}`;
+                fecha6.innerHTML = `Fecha: ${orden.date}`;
+                hora6.innerHTML = `Hora: ${orden.time}`;
+                posibleLi.innerHTML = `
+                <li class="orden-item">
+                    <span>${plato} x $${total}</span>
+                </li>
+
+                `;
+
+                contentOrdenes6.append(posibleLi);
+
+            }
+
+            let totalNumeroB=0;
+            const dataContentOrdenes6 = contentOrdenes6.children
+            for (let index = 5; index < dataContentOrdenes6.length; index++) {
+                const items = dataContentOrdenes6[index].children[0].children[0].innerHTML;
+                console.log(items);
+                const itemsTotal = items.split(' ');
+                const cantidadItem = itemsTotal[0];
+                const itemsTotalReverse = itemsTotal.reverse();
+                const itemsUnique = itemsTotalReverse[0];
+                const itemsArray = itemsUnique.split('$');
+                // const itemsOnlyN = itemsArray.shift();
+                console.log(itemsArray[1]);
+                let h = parseInt(cantidadItem, 10)
+                let c = parseInt(itemsArray[1], 10)
+                parseInt(totalNumeroA, 10)
+                let montoFinal = h*c;
+                
+                totalNumeroB += montoFinal;
+                console.log(totalNumeroB);
+                montoTotal6.innerHTML = `Monto: $${totalNumeroB}`
                 
             }
         }
@@ -475,6 +541,22 @@ ordenPreliminar.addEventListener('click', e => {
         const id = e.target.parentElement.id;
             // e.target.parentElement.remove();
             window.location.reload()
+
+        // await axios.delete(`/api/ordenes/${id}`)
+    }
+})
+
+contentOrdenes5.addEventListener('click', async e => {
+    if (e.target.classList.contains('btn-deleted')) {
+        const id = e.target.parentElement.id;
+            // e.target.parentElement.remove();
+        //   console.log(e.target.parentElement.children[5].children[0].id);
+        const arr = e.target.parentElement.children
+          for (let index = 5; index < arr.length; index++) {
+            const element = e.target.parentElement.children[index].children[0].id;
+            console.log(element);
+            await axios.delete(`/api/ordenes/${element}`)
+          }
 
         // await axios.delete(`/api/ordenes/${id}`)
     }
