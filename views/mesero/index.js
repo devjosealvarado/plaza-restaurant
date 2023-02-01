@@ -16,9 +16,14 @@ const resultadoBusqueda = document.querySelector('#resultado-busqueda');
 const ordenPreliminar = document.querySelector('#orden-preliminar');
 const cajaResultados = document.querySelector('#caja-resultados')
 const montoTotal = document.querySelector('#monto-total');
+const montoTotal5 = document.querySelector('#monto-total5');
 const btnDeleted = document.querySelector('.btn-deleted')
 const mesa = document.querySelector('#mesa-numero');
+const mesa5 = document.querySelector('#mesa5');
 const contentOrdenes5 = document.querySelector('#ordenes5');
+const fecha5 = document.querySelector('#fecha5');
+const hora5 = document.querySelector('#hora5')
+
 
 // ----------- EVENTO PARA CERRAR SESIÓN ---------//
 
@@ -273,7 +278,9 @@ const getOrdenes = async () => {
                 // const total = price + amount;
                 // console.log(total);
 
-                
+                mesa5.innerHTML = `Mesa: ${orden.mesa}`;
+                fecha5.innerHTML = `Fecha: ${orden.date}`;
+                hora5.innerHTML = `Hora: ${orden.time}`;
                 posibleLi.innerHTML = `
                 <li class="orden-item">
                     <span>${plato} x $${total}</span>
@@ -287,7 +294,7 @@ const getOrdenes = async () => {
 
             let totalNumeroA=0;
             const dataContentOrdenes5 = contentOrdenes5.children
-            for (let index = 1; index < dataContentOrdenes5.length; index++) {
+            for (let index = 4; index < dataContentOrdenes5.length; index++) {
                 const items = dataContentOrdenes5[index].children[0].children[0].innerHTML;
                 console.log(items);
                 const itemsTotal = items.split(' ');
@@ -304,24 +311,9 @@ const getOrdenes = async () => {
                 
                 totalNumeroA += montoFinal;
                 console.log(totalNumeroA);
+                montoTotal5.innerHTML = `Monto: $${totalNumeroA}`
                 
             }
-            // if (element === 7) {
-            //     // console.log(orden.mesa);
-            //     console.log(orden.orden);
-            //     const price = orden.precio
-            //     const amount = orden.cantidad;
-            //     console.log(price);
-            //     console.log(amount);
-
-            //     // const e = parseInt(amount, 10)
-            //     // const w = parseInt(price, 10);
-            //     const total = price*amount;
-            //     console.log(total);
-            //     // const total = price + amount;
-            //     // console.log(total);
-            // }
-
         }
     }
 
