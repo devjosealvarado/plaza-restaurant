@@ -248,7 +248,7 @@ const getOrdenes = async () => {
 
     try {
         const { data } = await axios.get('/api/ordenes', newOrden);
-    console.log(data);
+    // console.log(data);
 
     // const busqueda = data.reduce((acc, item) => {
     //     acc[item.mesa] = ++acc[item.mesa] || 0;
@@ -270,7 +270,7 @@ const getOrdenes = async () => {
             const btnDeletedA = document.createElement('button')
             btnDeletedA.setAttribute('class', 'btn-deleted');
             btnDeletedA.innerHTML = '✖'
-            console.log(btnDeletedA);
+            // console.log(btnDeletedA);
             if (element === 5) {
                 contentOrdenes5.style.display = '';
                 // console.log(orden.mesa);
@@ -330,17 +330,17 @@ const getOrdenes = async () => {
             if (element === 6) {
                 // console.log(orden.mesa);
                 contentOrdenes6.style.display = '';
-                console.log(orden.orden);
+                // console.log(orden.orden);
                 const plato = orden.orden;
                 const price = orden.precio
                 const amount = orden.cantidad;
-                console.log(price);
-                console.log(amount);
+                // console.log(price);
+                // console.log(amount);
 
                 // const e = parseInt(amount, 10)
                 // const w = parseInt(price, 10);
                 const total = price*amount;
-                console.log(total);
+                // console.log(total);
                 // const total = price + amount;
                 // console.log(total);
 
@@ -362,21 +362,21 @@ const getOrdenes = async () => {
             const dataContentOrdenes6 = contentOrdenes6.children
             for (let index = 5; index < dataContentOrdenes6.length; index++) {
                 const items = dataContentOrdenes6[index].children[0].children[0].innerHTML;
-                console.log(items);
+                // console.log(items);
                 const itemsTotal = items.split(' ');
                 const cantidadItem = itemsTotal[0];
                 const itemsTotalReverse = itemsTotal.reverse();
                 const itemsUnique = itemsTotalReverse[0];
                 const itemsArray = itemsUnique.split('$');
                 // const itemsOnlyN = itemsArray.shift();
-                console.log(itemsArray[1]);
+                // console.log(itemsArray[1]);
                 let h = parseInt(cantidadItem, 10)
                 let c = parseInt(itemsArray[1], 10)
                 parseInt(totalNumeroA, 10)
                 let montoFinal = h*c;
                 
                 totalNumeroB += montoFinal;
-                console.log(totalNumeroB);
+                // console.log(totalNumeroB);
                 montoTotal6.innerHTML = `Monto: $${totalNumeroB}`
                 
             }
@@ -397,70 +397,70 @@ const getOrdenes = async () => {
     //     // }
     // })
 
-        data.forEach(ordenItem => {
-            const ordenLi = document.createElement('li');
-            // console.log(ordenLi);
-            if (ordenItem.status === 'Pendiente') {
-                ordenLi.innerHTML = `
-                <li class="orden-item" id="${ordenItem.id}">
-				<p>Mesa: </p>
-                <p>${ordenItem.mesa}</p>
-                <p>Orden: </p>
-				<p>${ordenItem.orden}</p>
-                <p class="fecha">Fecha: ${ordenItem.date}</p>
-                <p class="hora">Hora: ${ordenItem.time}</p>
-                <p>Estado: </p>
-                <p class="estado">${ordenItem.status}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-                <div id="content-cantidad">
-                <button class="disminuir">-</button>
-                <span name="" class="cantidad">0</span>
-                <button class="incrementar">+</button>
-                </div>
-			</li>
-            `;
+//         data.forEach(ordenItem => {
+//             const ordenLi = document.createElement('li');
+//             // console.log(ordenLi);
+//             if (ordenItem.status === 'Pendiente') {
+//                 ordenLi.innerHTML = `
+//                 <li class="orden-item" id="${ordenItem.id}">
+// 				<p>Mesa: </p>
+//                 <p>${ordenItem.mesa}</p>
+//                 <p>Orden: </p>
+// 				<p>${ordenItem.orden}</p>
+//                 <p class="fecha">Fecha: ${ordenItem.date}</p>
+//                 <p class="hora">Hora: ${ordenItem.time}</p>
+//                 <p>Estado: </p>
+//                 <p class="estado">${ordenItem.status}</p>
+// 				<button class="btn-edit">✎</button>
+// 				<button class="btn-deleted">✖</button>
+//                 <div id="content-cantidad">
+//                 <button class="disminuir">-</button>
+//                 <span name="" class="cantidad">0</span>
+//                 <button class="incrementar">+</button>
+//                 </div>
+// 			</li>
+//             `;
 
-            let a = 0;
+//             let a = 0;
 
-            const btnDownLi = ordenLi.children[0].children[10].children[0];
-                const monto = ordenLi.children[0].children[10].children[1];
-            btnDownLi.addEventListener('click', () => {
-        a--;
-    // a = (a < 10) ? "0" + a : a;
-        monto.innerText = a;
-        console.log(a);
+//             const btnDownLi = ordenLi.children[0].children[10].children[0];
+//                 const monto = ordenLi.children[0].children[10].children[1];
+//             btnDownLi.addEventListener('click', () => {
+//         a--;
+//     // a = (a < 10) ? "0" + a : a;
+//         monto.innerText = a;
+//         console.log(a);
 
-});
+// });
 
-            contentOrdenes.append(ordenLi)
-            }
+//             contentOrdenes.append(ordenLi)
+//             }
 
-            if (ordenItem.status === 'Completado') {
-                ordenLi.innerHTML = `
-                <li class="orden-item" id="${ordenItem.id}">
-				<p>Mesa: </p>
-                <p>${ordenItem.mesa}</p>
-                <p>Orden: </p>
-				<p>${ordenItem.orden}</p>
-                <p class="fecha">Fecha: ${ordenItem.date}</p>
-                <p class="hora">Hora: ${ordenItem.time}</p>
-                <p>Estado: </p>
-                <p class="estado">${ordenItem.status}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-                <div id="content-cantidad">
-                <button class="disminuir">-</button>
-                <span name="" class="cantidad">0</span>
-                <button class="incrementar">+</button>
-            </div>
-			</li>
-            `;
+//             if (ordenItem.status === 'Completado') {
+//                 ordenLi.innerHTML = `
+//                 <li class="orden-item" id="${ordenItem.id}">
+// 				<p>Mesa: </p>
+//                 <p>${ordenItem.mesa}</p>
+//                 <p>Orden: </p>
+// 				<p>${ordenItem.orden}</p>
+//                 <p class="fecha">Fecha: ${ordenItem.date}</p>
+//                 <p class="hora">Hora: ${ordenItem.time}</p>
+//                 <p>Estado: </p>
+//                 <p class="estado">${ordenItem.status}</p>
+// 				<button class="btn-edit">✎</button>
+// 				<button class="btn-deleted">✖</button>
+//                 <div id="content-cantidad">
+//                 <button class="disminuir">-</button>
+//                 <span name="" class="cantidad">0</span>
+//                 <button class="incrementar">+</button>
+//             </div>
+// 			</li>
+//             `;
 
 
-            contentCompletados.append(ordenLi)
-            }
-        });
+//             contentCompletados.append(ordenLi)
+//             }
+//         });
 
 
     } finally {}
