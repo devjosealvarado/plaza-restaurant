@@ -5,6 +5,7 @@ btnMenu.addEventListener('click', e => {
     options.classList.toggle('show-options');
 })
 
+const contenedor = document.querySelector('#contenedor')
 const form = document.querySelector('#form');
 const mesaInput = document.querySelector('#mesa');
 const ordenInput = document.querySelector('#orden');
@@ -25,6 +26,29 @@ logoutBtn.addEventListener('click', async e => {
 	await axios.get('/api/logout');
 	window.location.pathname ='/';
 })
+
+// ------ EVENTO PARA CREAR LOS CONTENEDORES DE CADA MESERO -----
+const getUsers = async () => {
+    const  { data }  = await axios.get('/api/usersEncargados')
+        console.log(data);
+
+        data.forEach(mesero => {
+            console.log(mesero.id);
+            const contentMesero = document.createElement('div');
+            contentMesero.setAttribute('id', `${mesero.id}`)
+            contentMesero.innerHTML = `
+                <button class="btn-deleted">✖</button>
+                <p style="text-align: center;" id="mesa6${mesero.id}"></p>
+                <p style="text-align: center;" id="monto-total6${mesero.id}"></p>
+                <p style="text-align: center;" id="fecha6${mesero.id}"></p>
+                <p style="text-align: center;" id="hora6${mesero.id}"></p>
+            `
+            contenedor.append(contentMesero)
+        });
+        
+}
+
+getUsers();
 
 form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -60,6 +84,8 @@ form.addEventListener('submit', async e => {
     } finally {}
 })
 
+
+
 const getOrdenes = async () => {
     while (contentOrdenes.firstChild) {
         contentOrdenes.removeChild(contentOrdenes.firstChild)
@@ -74,6 +100,8 @@ const getOrdenes = async () => {
     try {
         const { data } = await axios.get('/api/ordenesEncargado');
     console.log(data);
+
+        
 
     const z = () => {
         for (let index = 0; index < data.length; index++) {
@@ -102,7 +130,7 @@ const getOrdenes = async () => {
                 console.log(total);
                 // const total = price + amount;
                 // console.log(total);
-
+                    console.log(mesa5);
                 mesa5.innerHTML = `Mesa: ${orden.mesa}`;
                 fecha5.innerHTML = `Fecha: ${orden.date}`;
                 hora5.innerHTML = `Hora: ${orden.time}`;
@@ -446,3 +474,5 @@ contentOrdenes.addEventListener('click', async e => {
         await axios.delete(`/api/ordenes/${id}`)
     }
 })
+
+
