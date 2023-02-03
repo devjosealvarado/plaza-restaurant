@@ -137,6 +137,8 @@ const getMenu = async () => {
                 formBtn.style.display = '';
                 mesa.style.display = '';
                 ordenPreliminar.append(PreviewOrden)
+                
+
             });
 
             // console.log(ordenPreliminar);
@@ -348,7 +350,7 @@ const getOrdenes = async () => {
                 fecha6.innerHTML = `Fecha: ${orden.date}`;
                 hora6.innerHTML = `Hora: ${orden.time}`;
                 posibleLi.innerHTML = `
-                <li class="orden-item">
+                <li class="orden-item" id="${orden.id}">
                     <span>${plato} x $${total}</span>
                 </li>
 
@@ -540,7 +542,7 @@ ordenPreliminar.addEventListener('click', e => {
     if (e.target.classList.contains('btn-deleted')) {
         const id = e.target.parentElement.id;
             // e.target.parentElement.remove();
-            window.location.reload()
+            // window.location.reload()
 
         // await axios.delete(`/api/ordenes/${id}`)
     }
@@ -560,7 +562,26 @@ contentOrdenes5.addEventListener('click', async e => {
 
         // await axios.delete(`/api/ordenes/${id}`)
     }
-})
+});
+
+contentOrdenes6.addEventListener('click', async e => {
+    if (e.target.classList.contains('btn-deleted')) {
+        const id = e.target.parentElement.id;
+            // e.target.parentElement.remove();
+        //   console.log(e.target.parentElement.children[5].children[0].id);
+        const arr = e.target.parentElement.children
+          for (let index = 5; index < arr.length; index++) {
+            // const element = e.target.parentElement.children[index].children[0].id;
+            const element = e.target.parentElement.children[index].children[0].id;
+            console.log(element);
+            await axios.delete(`/api/ordenes/${element}`)
+          }
+
+        // await axios.delete(`/api/ordenes/${id}`)
+    }
+});
+
+
 
 // ----------- EVENTO PARA REGISTRAR ORDEN ----------------
 
@@ -576,7 +597,7 @@ formBtn.addEventListener('click', async e=> {
     console.log(mesa.value);
     
 
-    for (let i = 5; i < data.length; i++) {
+    for (let i = 4; i < data.length; i++) {
         console.log(data[i].children[0].children[0].innerHTML);
         const plato = data[i].children[0].children[0].innerHTML;
         console.log(data[i].children[0].children[1].innerHTML);
@@ -611,6 +632,7 @@ formBtn.addEventListener('click', async e=> {
 
         // contentOrdenes.append(ordenLi);
 
+        window.location.reload()
 
     };
 

@@ -11,6 +11,15 @@ const ordenInput = document.querySelector('#orden');
 const formBtn = document.querySelector('#btnSubmit');
 const contentOrdenes = document.querySelector('#ordenes');
 const logoutBtn = document.querySelector('#btn-logout')
+const contentOrdenes5 = document.querySelector('#ordenes5');
+const contentOrdenes6 = document.querySelector('#ordenes6');
+const montoTotal5 = document.querySelector('#monto-total5');
+const montoTotal6 = document.querySelector('#monto-total6');
+
+const contentOrdenes5B = document.querySelector('#ordenes5B');
+const contentOrdenes6B = document.querySelector('#ordenes6B');
+const montoTotal5B = document.querySelector('#monto-total5B');
+const montoTotal6B = document.querySelector('#monto-total6B');
 
 logoutBtn.addEventListener('click', async e => {
 	await axios.get('/api/logout');
@@ -66,33 +75,308 @@ const getOrdenes = async () => {
         const { data } = await axios.get('/api/ordenesEncargado');
     console.log(data);
 
-        data.forEach(ordenItem => {
-            const ordenLi = document.createElement('li');
-            // console.log(ordenLi);
-            ordenLi.innerHTML = `
-                <li class="orden-item" id="${ordenItem.id}">
-				<p>Mesero:${ordenItem.mesero}</p>
-                <p>Mesa: </p>
-                <p>${ordenItem.mesa}</p>
-                <p>Orden: </p>
-				<p>${ordenItem.orden}</p>
-                <p class="fecha">Fecha: ${ordenItem.date}</p>
-                <p class="hora">Hora: ${ordenItem.time}</p>
-                <p>Estado: </p>
-                <p class="estado">${ordenItem.status}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-			</li>
-            `;
+    const z = () => {
+        for (let index = 0; index < data.length; index++) {
+            const userID = data[index].user;
+            const element = data[index].mesa;
+            const orden = data[index];
+            const posibleLi = document.createElement('li');
+            const btnDeletedA = document.createElement('button')
+            btnDeletedA.setAttribute('class', 'btn-deleted');
+            btnDeletedA.innerHTML = '✖'
+            // console.log(btnDeletedA);
+            if (userID === '63c1dd1a05b92b3b431eb2fc') {
+                if (element === 5) {
+                    contentOrdenes5.style.display = '';
+                // console.log(orden.mesa);
+                console.log(orden.orden);
+                const plato = orden.orden;
+                const price = orden.precio
+                const amount = orden.cantidad;
+                console.log(price);
+                console.log(amount);
 
-            contentOrdenes.append(ordenLi)
-        });
+                // const e = parseInt(amount, 10)
+                // const w = parseInt(price, 10);
+                const total = price*amount;
+                console.log(total);
+                // const total = price + amount;
+                // console.log(total);
+
+                mesa5.innerHTML = `Mesa: ${orden.mesa}`;
+                fecha5.innerHTML = `Fecha: ${orden.date}`;
+                hora5.innerHTML = `Hora: ${orden.time}`;
+                posibleLi.innerHTML = `
+                <li class="orden-item" id="${orden.id}">
+                    <span>${plato} x $${price}</span>
+                </li>
+
+                `;
+                
+                contentOrdenes5.append(posibleLi);
+                }
+
+                let totalNumeroA=0;
+            const dataContentOrdenes5 = contentOrdenes5.children
+            for (let index = 5; index < dataContentOrdenes5.length; index++) {
+                const items = dataContentOrdenes5[index].children[0].children[0].innerHTML;
+                console.log(items);
+                const itemsTotal = items.split(' ');
+                const cantidadItem = itemsTotal[0];
+                const itemsTotalReverse = itemsTotal.reverse();
+                const itemsUnique = itemsTotalReverse[0];
+                const itemsArray = itemsUnique.split('$');
+                // const itemsOnlyN = itemsArray.shift();
+                console.log(itemsArray[1]);
+                let h = parseInt(cantidadItem, 10)
+                let c = parseInt(itemsArray[1], 10)
+                parseInt(totalNumeroA, 10)
+                let montoFinal = h*c;
+                
+                totalNumeroA += montoFinal;
+                console.log(totalNumeroA);
+                montoTotal5.innerHTML = `Monto: $${totalNumeroA}`
+                
+            }
+                
+                if (element === 6) {
+                    // console.log(orden.mesa);
+                    contentOrdenes6.style.display = '';
+                    // console.log(orden.orden);
+                    const plato = orden.orden;
+                    const price = orden.precio
+                    const amount = orden.cantidad;
+                    // console.log(price);
+                    // console.log(amount);
+    
+                    // const e = parseInt(amount, 10)
+                    // const w = parseInt(price, 10);
+                    const total = price*amount;
+                    // console.log(total);
+                    // const total = price + amount;
+                    // console.log(total);
+    
+                    mesa6.innerHTML = `Mesa: ${orden.mesa}`;
+                    fecha6.innerHTML = `Fecha: ${orden.date}`;
+                    hora6.innerHTML = `Hora: ${orden.time}`;
+                    posibleLi.innerHTML = `
+                    <li class="orden-item" id="${orden.id}">
+                        <span>${plato} x $${price}</span>
+                    </li>
+    
+                    `;
+    
+                    contentOrdenes6.append(posibleLi);
+    
+                }
+
+                let totalNumeroB=0;
+                const dataContentOrdenes6 = contentOrdenes6.children
+                for (let index = 5; index < dataContentOrdenes6.length; index++) {
+                   const items = dataContentOrdenes6[index].children[0].children[0].innerHTML;
+                    // console.log(items);
+                    const itemsTotal = items.split(' ');
+                    const cantidadItem = itemsTotal[0];
+                    const itemsTotalReverse = itemsTotal.reverse();
+                    const itemsUnique = itemsTotalReverse[0];
+                    const itemsArray = itemsUnique.split('$');
+                    // const itemsOnlyN = itemsArray.shift();
+                    // console.log(itemsArray[1]);
+                    let h = parseInt(cantidadItem, 10)
+                    let c = parseInt(itemsArray[1], 10)
+                    parseInt(totalNumeroB, 10)
+                    let montoFinal = h*c;
+                    
+                    totalNumeroB += montoFinal;
+                     // console.log(totalNumeroB);
+                    montoTotal6.innerHTML = `Monto: $${totalNumeroB}`
+                
+                }
+            }
+
+            if (userID === '63c0d934e5474132d8a106c9') {
+                if (element === 5) {
+                    contentOrdenes5B.style.display = '';
+                    // console.log(orden.mesa);
+                    console.log(orden.orden);
+                    const plato = orden.orden;
+                    const price = orden.precio
+                    const amount = orden.cantidad;
+                    console.log(price);
+                    console.log(amount);
+
+                    // const e = parseInt(amount, 10)
+                    // const w = parseInt(price, 10);
+                    const total = price*amount;
+                    console.log(total);
+                    // const total = price + amount;
+                    // console.log(total);
+
+                    mesa5.innerHTML = `Mesa: ${orden.mesa}`;
+                    fecha5.innerHTML = `Fecha: ${orden.date}`;
+                    hora5.innerHTML = `Hora: ${orden.time}`;
+                    posibleLi.innerHTML = `
+                    <li class="orden-item" id="${orden.id}">
+                        <span>${plato} x $${price}</span>
+                    </li>
+
+                    `;
+                
+                    contentOrdenes5B.append(posibleLi);
+                }
+
+                let totalNumeroA=0;
+                const dataContentOrdenes5 = contentOrdenes5B.children
+                for (let index = 5; index < dataContentOrdenes5.length; index++) {
+                    const items = dataContentOrdenes5[index].children[0].children[0].innerHTML;
+                    console.log(items);
+                    const itemsTotal = items.split(' ');
+                    const cantidadItem = itemsTotal[0];
+                    const itemsTotalReverse = itemsTotal.reverse();
+                    const itemsUnique = itemsTotalReverse[0];
+                    const itemsArray = itemsUnique.split('$');
+                    // const itemsOnlyN = itemsArray.shift();
+                    console.log(itemsArray[1]);
+                    let h = parseInt(cantidadItem, 10)
+                    let c = parseInt(itemsArray[1], 10)
+                    parseInt(totalNumeroA, 10)
+                    let montoFinal = h*c;
+                    
+                    totalNumeroA += montoFinal;
+                    console.log(totalNumeroA);
+                    montoTotal5B.innerHTML = `Monto: $${totalNumeroA}`
+                    
+                }
+                
+                if (element === 6) {
+                    // console.log(orden.mesa);
+                    contentOrdenes6B.style.display = '';
+                    // console.log(orden.orden);
+                    const plato = orden.orden;
+                    const price = orden.precio
+                    const amount = orden.cantidad;
+                    // console.log(price);
+                    // console.log(amount);
+    
+                    // const e = parseInt(amount, 10)
+                    // const w = parseInt(price, 10);
+                    const total = price*amount;
+                    // console.log(total);
+                    // const total = price + amount;
+                    // console.log(total);
+    
+                    mesa6.innerHTML = `Mesa: ${orden.mesa}`;
+                    fecha6.innerHTML = `Fecha: ${orden.date}`;
+                    hora6.innerHTML = `Hora: ${orden.time}`;
+                    posibleLi.innerHTML = `
+                    <li class="orden-item" id="${orden.id}">
+                        <span>${plato} x $${price}</span>
+                    </li>
+    
+                    `;
+    
+                    contentOrdenes6B.append(posibleLi);
+    
+                }
+
+                let totalNumeroB=0;
+                const dataContentOrdenes6 = contentOrdenes6B.children
+                for (let index = 5; index < dataContentOrdenes6.length; index++) {
+                   const items = dataContentOrdenes6[index].children[0].children[0].innerHTML;
+                    // console.log(items);
+                    const itemsTotal = items.split(' ');
+                    const cantidadItem = itemsTotal[0];
+                    const itemsTotalReverse = itemsTotal.reverse();
+                    const itemsUnique = itemsTotalReverse[0];
+                    const itemsArray = itemsUnique.split('$');
+                    // const itemsOnlyN = itemsArray.shift();
+                    // console.log(itemsArray[1]);
+                    let h = parseInt(cantidadItem, 10)
+                    let c = parseInt(itemsArray[1], 10)
+                    parseInt(totalNumeroB, 10)
+                    let montoFinal = h*c;
+                    
+                    totalNumeroB += montoFinal;
+                     console.log(totalNumeroB);
+                    montoTotal6B.innerHTML = `Monto: $${totalNumeroB}`
+                
+                }
+
+                
+            }
+
+            
+
+            // ----------------------------------------------------
+
+            // if (element === 6) {
+            //     // console.log(orden.mesa);
+            //     contentOrdenes6.style.display = '';
+            //     // console.log(orden.orden);
+            //     const plato = orden.orden;
+            //     const price = orden.precio
+            //     const amount = orden.cantidad;
+            //     // console.log(price);
+            //     // console.log(amount);
+
+            //     // const e = parseInt(amount, 10)
+            //     // const w = parseInt(price, 10);
+            //     const total = price*amount;
+            //     // console.log(total);
+            //     // const total = price + amount;
+            //     // console.log(total);
+
+            //     mesa6.innerHTML = `Mesa: ${orden.mesa}`;
+            //     fecha6.innerHTML = `Fecha: ${orden.date}`;
+            //     hora6.innerHTML = `Hora: ${orden.time}`;
+            //     posibleLi.innerHTML = `
+            //     <li class="orden-item" id="${orden.id}">
+            //         <span>${plato} x $${total}</span>
+            //     </li>
+
+            //     `;
+
+            //     contentOrdenes6.append(posibleLi);
+
+            // }
+
+            
+        }
+    }
+
+    z();
+    
+
+
+        // data.forEach(ordenItem => {
+        //     const ordenLi = document.createElement('li');
+        //     // console.log(ordenLi);
+        //     ordenLi.innerHTML = `
+        //         <li class="orden-item" id="${ordenItem.id}">
+		// 		<p>Mesero:${ordenItem.mesero}</p>
+        //         <p>Mesa: </p>
+        //         <p>${ordenItem.mesa}</p>
+        //         <p>Orden: </p>
+		// 		<p>${ordenItem.orden}</p>
+        //         <p class="fecha">Fecha: ${ordenItem.date}</p>
+        //         <p class="hora">Hora: ${ordenItem.time}</p>
+        //         <p>Estado: </p>
+        //         <p class="estado">${ordenItem.status}</p>
+		// 		<button class="btn-edit">✎</button>
+		// 		<button class="btn-deleted">✖</button>
+		// 	</li>
+        //     `;
+
+        //     contentOrdenes.append(ordenLi)
+        // });
+
+
 
         
     } finally {}
 };
 
-let intervalID = setInterval(getOrdenes, 30000);
+// let intervalID = setInterval(getOrdenes, 30000);
 
 getOrdenes();
 
