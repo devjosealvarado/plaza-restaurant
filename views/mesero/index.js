@@ -596,6 +596,10 @@ formBtn.addEventListener('click', async e=> {
     
     console.log(mesa.value);
     
+    let platoArray = []
+    let precioArray = []
+    let mesaArray = 0;
+    
 
     for (let i = 4; i < data.length; i++) {
         console.log(data[i].children[0].children[0].innerHTML);
@@ -606,21 +610,16 @@ formBtn.addEventListener('click', async e=> {
 
         let cantidadPlato = plato.split(' ')
         const cantidadPlatoNumber = parseInt(cantidadPlato[0], 10);
+        console.log(cantidadPlatoNumber);
 
         const precio = parseInt(precioString, 10);
         console.log(precio);
-        
-        
 
-        const newOrden = {
-            mesa: mesa.value,
-            orden: plato,
-            cantidad: cantidadPlatoNumber,
-            precio: precio,
-            status: 'Pendiente',
-            // date: Date.now()
-        }
-        await axios.post('/api/ordenes', newOrden, { withCredentials: true});
+        const multiplicacion = cantidadPlatoNumber*precio
+        
+        platoArray.push(plato)
+        precioArray.push(multiplicacion)
+        
         // const ordenLi = document.createElement('li');
         // ordenLi.innerHTML = `<li class="orden-item" id="">
 		// 		<p>Mesa:  </p>
@@ -632,11 +631,35 @@ formBtn.addEventListener('click', async e=> {
 
         // contentOrdenes.append(ordenLi);
 
-        window.location.reload()
+        // window.location.reload()
 
     };
-
     
+    console.log(platoArray);
+    const platoDefinito = platoArray.join(', ')
+    const sumatoriaPrecio = precioArray.reduce((a,b) => a + b, 0)
+    console.log(sumatoriaPrecio);
+
+    const newOrden = {
+        mesa: mesa.value,
+        orden: platoDefinito,
+        cantidad: 0,
+        precio: sumatoriaPrecio,
+        status: 'Pendiente',
+        // date: Date.now()
+    }
+    await axios.post('/api/ordenes', newOrden, { withCredentials: true});
+
+
+    // const newOrden = {
+    //     mesa: mesa.value,
+    //     orden: plato,
+    //     cantidad: cantidadPlatoNumber,
+    //     precio: precio,
+    //     status: 'Pendiente',
+    //     // date: Date.now()
+    // }
+    // await axios.post('/api/ordenes', newOrden, { withCredentials: true});
 
 })
 
