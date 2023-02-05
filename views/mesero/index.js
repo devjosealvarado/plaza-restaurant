@@ -594,7 +594,7 @@ formBtn.addEventListener('click', async e=> {
     const data = ordenPreliminar.children;
     console.log(data);
     
-    console.log(mesa.value);
+    // console.log(mesa.value);
     
     let platoArray = []
     let precioArray = []
@@ -602,18 +602,18 @@ formBtn.addEventListener('click', async e=> {
     
 
     for (let i = 4; i < data.length; i++) {
-        console.log(data[i].children[0].children[0].innerHTML);
+        // console.log(data[i].children[0].children[0].innerHTML);
         const plato = data[i].children[0].children[0].innerHTML;
-        console.log(data[i].children[0].children[1].innerHTML);
+        // console.log(data[i].children[0].children[1].innerHTML);
         const precioString = data[i].children[0].children[1].innerHTML;
-        console.log(montoTotal.children[1].innerHTML);
+        // console.log(montoTotal.children[1].innerHTML);
 
         let cantidadPlato = plato.split(' ')
         const cantidadPlatoNumber = parseInt(cantidadPlato[0], 10);
-        console.log(cantidadPlatoNumber);
+        // console.log(cantidadPlatoNumber);
 
         const precio = parseInt(precioString, 10);
-        console.log(precio);
+        // console.log(precio);
 
         const multiplicacion = cantidadPlatoNumber*precio
         
