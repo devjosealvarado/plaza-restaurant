@@ -34,7 +34,7 @@ form.addEventListener('submit', async e => {
     } else {
         try {
             const newMenu = {
-                plato: plato.value,
+                plato: plato.value.toUpperCase(),
                 price: price.value,
                 // image: imageRef.value
             }

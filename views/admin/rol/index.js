@@ -14,7 +14,7 @@ const roles = document.querySelector('#roles');
 const rolInput = document.querySelector('#rol')
 const contactoItem = document.querySelector('.contacto-item')
 const logoutBtn = document.querySelector('#btn-logout')
-console.log(rolInput.value);
+// console.log(rolInput.value);
 
 btnMenu.addEventListener('click', e => {
     options.classList.toggle('show-options');
@@ -38,13 +38,12 @@ const getEncargados = async () => {
     }
     try {
     const { data } = await axios.get('/api/users', newUser, {withCredentials: true});
-    // console.log(data);
-    console.log(data);
-    let dataF = data;
-    let dataFI = dataF.filter(cargo => cargo.rol.startsWith('Encargado'));
-    let dataFII = dataF.filter(cargo => cargo.rol.startsWith('Mesero'));
-    let dataFinal = dataFI.concat(dataFII);
-    console.log(dataFinal);
+    
+
+    // FILTRO PARA OCULTAR CLIENTES DE LA LISTA DE USUARIOS
+    const deleteCliente = data.filter(item => item.rol != 'Cliente');
+    // FILTRO PARA OCULTAR AL ADMINISTRADOR DE LA LISTA DE USUARIOS
+    const dataFinal = deleteCliente.filter(item => item.rol != 'Admin')
 
     dataFinal.forEach(userh => {
         const rol = document.createElement('li');
@@ -85,6 +84,7 @@ form.addEventListener ('submit', async e => {
         console.log(data);
         if (data === 'Created') {
             alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
+            window.location.reload()
         } else {
             console.log('no');
             // window.location.pathname='/login';
