@@ -183,7 +183,7 @@ label {
 }
 
 #comidas .comida-item .btns .btn-deleted svg {
-    color: rgb(131, 0, 0);
+    color: rgb(255, 0, 0);
     width: 2rem;
 }
 
