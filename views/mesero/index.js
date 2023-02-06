@@ -139,6 +139,7 @@ const getMenu = async () => {
                 // btnDeleted.style.display = '';
                 formBtn.style.display = '';
                 mesa.style.display = '';
+                ordenPreliminar.style.display = '';
                 ordenPreliminar.append(PreviewOrden)
                 
 
@@ -201,55 +202,7 @@ const getMenu = async () => {
 getMenu();
 
 
-
-// ------------ EVENTO PARA CREAR ORDENES ------- //
-
-// form.addEventListener('submit', async e => {
-//     e.preventDefault();
-
-//     const newOrden = {
-//         mesa: mesaInput.value,
-//         orden: ordenInput.value,
-//         status: 'Pendiente',
-//         // date: Date.now()
-//     }
-//     try {
-//         const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
-//         console.log(data);
-//         const ordenLi = document.createElement('li');
-//             // console.log(ordenLi);
-//             ordenLi.innerHTML = `
-//                 <li class="orden-item" id="${data.id}">
-// 				<p>Mesa: </p>
-//                 <p>${data.mesa}</p>
-//                 <p>Orden: </p>
-// 				<p>${data.orden}</p>
-//                 <p class="fecha">Fecha: ${data.date}</p>
-//                 <p class="hora">Hora: ${data.time}</p>
-//                 <p class="estado">${data.status}</p>
-// 				<button class="btn-edit">✎</button>
-// 				<button class="btn-deleted">✖</button>
-//                 <div id="content-cantidad">
-//                 <button class="disminuir">-</button>
-//                 <span name="" class="cantidad">0</span>
-//                 <button class="incrementar">+</button>
-//                 </div>
-// 			</li>
-//             `;
-
-//             contentOrdenes.append(ordenLi)
-
-//     } finally {}
-// })
-
-
 const getOrdenes = async () => {
-
-    // const newOrden = {
-    //     mesa: mesaInput.value,
-    //     orden: ordenInput.value
-    //     // image: imageRef.value
-    // }
 
     try {
         const { data } = await axios.get('/api/ordenes');
@@ -268,20 +221,36 @@ const getOrdenes = async () => {
             const platos = orden.orden
             console.log(orden.status);
             const status = orden.status;
-
-            const plato = document.createElement('div')
+            if (status === 'Completado') {
+                const plato = document.createElement('div')
             plato.innerHTML = `
-                <li class="orden-item">
-                    <p>Mesa: ${mesa}</p>
-                    <p>Monto: $${monto}</p>
-                    <p>Fecha: ${fecha}</p>
-                    <p>Hora: ${hora}</p>
-                    <p>${platos}</p>
-                    <p>Estado: ${status}</p>
-                </li>
+            <div class="orden-item completado">
+                <span>Mesa: ${mesa}</span>
+                <span>Orden: ${platos}</span>
+                <span>Monto: $${monto}</span>
+                <span class="fecha">Fecha: ${fecha}</span>
+                <span class="hora">Hora: ${hora}</span>
+                <span>Estado: ${status}</span>
+            </div>
             `;
 
             contentOrdenes.append(plato);
+            } else {
+                const plato = document.createElement('div')
+            plato.innerHTML = `
+            <div class="orden-item">
+                <span>Mesa: ${mesa}</span>
+                <span>Orden: ${platos}</span>
+                <span>Monto: $${monto}</span>
+                <span class="fecha">Fecha: ${fecha}</span>
+                <span class="hora">Hora: ${hora}</span>
+                <span>Estado: ${status}</span>
+            </div>
+            `;
+
+            contentOrdenes.append(plato);
+            }
+            
         })
 
 

@@ -332,3 +332,32 @@ li .comida-item {
     border-radius: 0.3rem;
     margin-bottom: 0.5rem;
 }
+
+/* ------- ORDENES ---------- */
+
+#ordenes {
+    text-align: center;
+    color: rgb(99, 99, 99);
+}
+
+#ordenes div .orden-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    background-color: #00afa8;
+    color: #fff;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+}
+
+#ordenes div .orden-item span {
+    text-align: left;
+    margin-bottom: 1rem;
+    border-bottom: solid 1px;
+}
+
+#ordenes div .completado {
+    background-color: rgb(81, 196, 52);
+}

@@ -27,42 +27,6 @@ logoutBtn.addEventListener('click', async e => {
 	window.location.pathname ='/';
 })
 
-
-// form.addEventListener('submit', async e => {
-//     e.preventDefault();
-
-//     const newOrden = {
-//         mesa: mesaInput.value,
-//         orden: ordenInput.value,
-//         status: 'Pendiente',
-//         // date: Date.now()
-//     }
-//     try {
-//         const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
-//         console.log(data);
-//         const ordenLi = document.createElement('li');
-//             // console.log(ordenLi);
-//             ordenLi.innerHTML = `
-//                 <li class="orden-item" id="${data.id}">
-// 				<p>Mesero:${data.mesero}</p>
-//                 <p>Mesa: </p>
-//                 <p>${data.mesa}</p>
-//                 <p>Orden: </p>
-// 				<p>${data.orden}</p>
-//                 <p class="fecha">Fecha: ${data.date}</p>
-//                 <p class="hora">Hora: ${data.time}</p>
-//                 <p class="estado">${data.status}</p>
-// 				<button class="btn-edit">✎</button>
-// 				<button class="btn-deleted">✖</button>
-// 			</li>
-//             `;
-
-//             contentOrdenes.append(ordenLi)
-        
-//     } finally {}
-// })
-
-
 // EVENTO PARA PEDIR LAS ORDENES
 
 const getOrdenes = async () => {
