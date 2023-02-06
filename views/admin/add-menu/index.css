@@ -207,6 +207,12 @@ label {
     width: 2rem;
 }
 
+#comidas .comida-item .btn-editing {
+    width: 3rem;
+    display: flex;
+    align-self: center;
+}
+
 /* #comidas li .comida-item .plato {
     grid-area: plato;
     display: flex;
