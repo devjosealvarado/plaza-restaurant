@@ -159,9 +159,17 @@ label {
 #ordenes div .orden-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #d9f99d;
-    color: rgb(99, 99, 99);
+    justify-content: left;
+    align-items: flex-start;
+    background-color: #00afa8;
+    color: #fff;
     margin: 1rem;
+    padding: 1rem;
     border-radius: 2rem;
+}
+
+#ordenes div .orden-item span {
+    text-align: left;
+    margin-bottom: 1rem;
+    border-bottom: solid 1px;
 }

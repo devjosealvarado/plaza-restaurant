@@ -82,6 +82,7 @@ const getOrdenes = async () => {
 				<span>Mesero: ${ordenItem.mesero}</span>
                 <span>Mesa: ${ordenItem.mesa}</span>
                 <span>Orden: ${ordenItem.orden}</span>
+                <span>Monto: $${ordenItem.precio}</span>
                 <span class="fecha">Fecha: ${ordenItem.date}</span>
                 <span class="hora">Hora: ${ordenItem.time}</span>
                 <span>Estado: ${ordenItem.status}</span>
