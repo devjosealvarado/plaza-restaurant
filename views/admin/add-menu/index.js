@@ -128,7 +128,7 @@ comidas.addEventListener('click', async e => {
        //    console.log(e.target.parentElement.parentElement.children[0].innerHTML);
        comidaItem.innerHTML = `
         <input type="text" class="meal-edit" value="${comida}">
-        <input type="number" class="price-edit" step="0.01" maxlength="11" value="${precio[1]}">
+        <input type="number" step="0.01" class="price-edit" step="0.01" maxlength="11" value="${precio[1]}">
         <button class="btn-editing">✔</button>
         `;
     } else if (e.target.classList.contains('btn-editing')) {
@@ -140,11 +140,13 @@ comidas.addEventListener('click', async e => {
         let isValid = PRICE_REGEX.test(price.value);
         if (isValid == true) {
             comidaItem.innerHTML = `
-            <p>${plato.value}</p>
-            
-            <p>$${price.value}</p>
+            <div class="content-plato-precio">
+                <span class="plato">${plato.value}</span>
+				<span class="precio">$${price.value}</span>
+                </div>
             <button class="btn-edit">✎</button>
             <button class="btn-deleted">✖</button>
+            
             `;
             await axios.patch(`/api/menus/${id}`, {plato: plato.value, price: price.value});
         }

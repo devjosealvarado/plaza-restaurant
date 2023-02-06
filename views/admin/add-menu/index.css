@@ -196,6 +196,17 @@ label {
     width: 2rem;
 }
 
+
+#comidas .comida-item .meal-edit, #comidas .comida-item .price-edit {
+    margin: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+#comidas .comida-item .edit-btn {
+    width: 2rem;
+}
+
 /* #comidas li .comida-item .plato {
     grid-area: plato;
     display: flex;
