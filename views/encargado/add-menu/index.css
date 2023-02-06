@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
+    background-color: rgba(245,245,245,255);
 }
 
 #contenedor {
@@ -18,8 +19,10 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -42,17 +45,19 @@ body {
     right: 0rem;
     top: -5rem;
     margin-top: 3.5rem;
-    background-color: #14532d;
+    background-color: #00afa8;
+    color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
-    border-radius: 0 0.3rem;
+    border-bottom-left-radius: 1rem;
     
 }
 
 .options .option a {
     text-decoration: none;
     color: #fff;
+    left: 0;
 }
 
 .options .option a:visited {
@@ -63,6 +68,10 @@ body {
     padding: .5rem;
 }
 
+.options .option {
+    display: flex;
+    justify-content: left;
+}
 
 .show-options {
     right: 0rem;
@@ -76,7 +85,12 @@ body {
 #form-content {
     grid-area: formulario;
     /* background-color: rgb(156, 156, 156); */
+    background-color: #00afa981;
+    border-radius: 1rem;
     margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #form {
@@ -84,7 +98,6 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    background-color: #fef9c3;
     border-radius: 2rem;
     
 }
@@ -100,7 +113,7 @@ body {
 label {
     margin-bottom: 1rem;
     margin-top: 1rem;
-    color: #78350f;
+    color: #fff;
 }
 
 #image {
@@ -114,7 +127,7 @@ label {
     border-radius: 1rem;
     min-width: 8rem;
     min-height: 3rem;
-    background-color: #14532d;
+    background-color:#00afa8;;
     color: #fff;
 
 }
@@ -146,12 +159,47 @@ label {
     list-style: none;
 }
 
-#comidas li .comida-item {
+#comidas .comida-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #d9f99d;
-    color: rgb(99, 99, 99);
+    justify-content: space-between;
+    background-color: #00504d;
+    color: #fff;
     margin: 1rem;
+    padding: 1rem;
     border-radius: 2rem;
+}
+
+#comidas .comida-item .content-plato-precio, #comidas .comida-item .btns  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+#comidas .comida-item .btns .btn-edit svg {
+    color: yellow;
+    width: 2rem;
+}
+
+#comidas .comida-item .btns .btn-deleted svg {
+    color: rgb(131, 0, 0);
+    width: 2rem;
+}
+
+
+#comidas .comida-item .meal-edit, #comidas .comida-item .price-edit {
+    margin: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+#comidas .comida-item .edit-btn {
+    width: 2rem;
+}
+
+#comidas .comida-item .btn-editing {
+    width: 3rem;
+    display: flex;
+    align-self: center;
 }

@@ -170,13 +170,6 @@ label {
     margin: 1rem;
     padding: 1rem;
     border-radius: 2rem;
-
-    /* display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas: "plato plato"
-                        "moneda precio"
-                        "editar eliminar"; */
 }
 
 #comidas .comida-item .content-plato-precio, #comidas .comida-item .btns  {
