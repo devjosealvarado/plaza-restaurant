@@ -19,13 +19,15 @@ body {
                         "footer";
 }
 
-#contenedor h1 {
+#contenedor h2 {
     color: rgb(99, 99, 99);
 }
 
 #nav-bar {
     grid-area: header;
     background-color: rgba(245,245,245,255);
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
     color: #6d6d6d;
     display: flex;
     flex-direction: row;
@@ -41,7 +43,7 @@ body {
 
 
 #button-menu {
-    color: #78350f;
+    color: #000;
     width: 2rem;
 }
 

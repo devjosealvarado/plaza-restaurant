@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
+    background-color: rgba(245,245,245,255);
 }
 
 #contenedor {
@@ -16,8 +17,10 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

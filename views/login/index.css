@@ -1,7 +1,8 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
-    background-color: #ffffff;
+    background-color: rgba(245,245,245,255);
+
 }
 
 #contenedor {
@@ -9,16 +10,20 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    row-gap: 50%;
+    row-gap: 15%;
     grid-template-rows: 3.5rem auto;
     grid-template-areas: "header"
                         "formulario";
 }
 
+
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    /* border: solid ; */
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -41,19 +46,21 @@ body {
     right: 0rem;
     top: -5rem;
     margin-top: 3.5rem;
-    background-color: #14532d;
+    background-color: #00afa8;
     color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
     display: flex;
     flex-direction: column; 
-
+    justify-content: left;
+    border-bottom-left-radius: 1rem;
 }
 
 .options .option a {
     text-decoration: none;
     color: #fff;
+    left: 0;
 }
 
 .options .option a:visited {
@@ -64,6 +71,10 @@ body {
     padding: .5rem;
 }
 
+.options .option {
+    display: flex;
+    justify-content: left;
+}
 
 .show-options {
     right: 0rem;
@@ -76,18 +87,26 @@ body {
 
 /* --------- FORMULARIO --------- */
 
+.inicio-de-sesion {
+    color: #fff;
+}
+
 #form-content {
     grid-area: formulario;
-    /* background-color: blue; */
+    background-color: #00afa8;
+    border-radius: 1rem;
     margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    background-color: #fef9c3;
+    align-items: flex-start;
+    padding: 1rem 1rem 1rem 0;
+    background-color: #00afa8;
     border-radius: 2rem;
     
 }
@@ -95,15 +114,21 @@ body {
 label {
     margin-bottom: 1rem;
     margin-top: 1rem;
-    color: #78350f;
+    color: #fff;
 }
 
 #form input {
     border: none;
-    border-radius: 1rem;
+    border-bottom: 1px solid #fff;
+    background-color: #00afa8;
+    color: #fff;
     outline: none;
     min-width: 15rem;
     min-height: 2rem;
+}
+
+#form input::placeholder {
+    color: #cccccc8e;
 }
 
 #btnSubmit {
@@ -113,9 +138,14 @@ label {
     border-radius: 1rem;
     min-width: 8rem;
     min-height: 3rem;
-    background-color: #14532d;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
+}
 
+#btnSubmit:hover {
+    background-color: #006461;
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 /* #btnSubmit {
