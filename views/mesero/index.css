@@ -134,7 +134,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-    background-color: #00afa981;
+    
     border-radius: 2rem;
     
 }
@@ -151,6 +151,18 @@ label {
     outline: none;
     min-width: 15rem;
     min-height: 2rem;
+    background-color: #00afa8;
+    color: #fff;
+
+}
+
+#orden {
+    background-color: #00afa8;
+    color: #fff;
+}
+
+#orden::placeholder {
+    color: #fff;
 }
 
 #btnSubmit {
@@ -242,6 +254,53 @@ label {
     /* grid-area: resultado-busqueda; */
     background-color: rgb(0, 113, 141);
     /* z-index: 10; */
+    padding: 1rem;
+}
+
+li {
+    list-style: none;
+   
+}
+
+li .comida-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #00afa8;
+    color: #fff;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+
+    
+}
+
+.btnAddPlato {
+    margin-top: 1rem;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.3rem;
+}
+/*----------- CONTADOR ----------- */
+#content-cantidad {
+    display: flex;
+    width: 30%;
+    justify-content: space-between;
+}
+
+#content-cantidad .incrementar {
+    background:none;
+    border-radius: 0.3rem;
+    border: solid #fff 1px;
+    color: #fff;
+}
+
+#content-cantidad .disminuir {
+    background:none;
+    border-radius: 0.3rem;
+    border: solid #fff 1px;
+    color: #fff;
 }
 
 /* --------- ORDEN PRELIMINAR --------------- */
@@ -250,3 +309,4 @@ label {
     grid-area: orden-preliminar;
     background-color: rgb(8, 151, 20);
 }
+

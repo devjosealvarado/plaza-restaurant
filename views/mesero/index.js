@@ -69,23 +69,24 @@ const getMenu = async () => {
         menuFiltrado.forEach(meal => {
             const comida = document.createElement('li');
             comida.innerHTML = `
-                <li class="comida-item" id="${meal.id}">
-				<p>${meal.plato}</p>
-				<p>${meal.price}</p>
+                <div class="comida-item" id="${meal.id}">
+				<p>${meal.plato} $${meal.price}</p>
+				<p style="display: none">$${meal.price}</p>
+                <span style="display: none">${meal.price}</span>
                 <div id="content-cantidad">
                     <button class="disminuir">-</button>
                     <span name="" class="cantidad">1</span>
                     <button class="incrementar">+</button>
                 </div>
                 <button class="btnAddPlato">Agregar</button>
-			    </li>
+			    </div>
             `;
 
             let a = 1;
             console.log();
-            const btnDownLi = comida.children[0].children[2].children[0];
-            const btnUpLi = comida.children[0].children[2].children[2]
-            const monto = comida.children[0].children[2].children[1];
+            const btnDownLi = comida.children[0].children[3].children[0];
+            const btnUpLi = comida.children[0].children[3].children[2]
+            const monto = comida.children[0].children[3].children[1];
 
             // console.log(monto);
 
@@ -105,7 +106,8 @@ const getMenu = async () => {
             });
 
             const plato = comida.children[0].children[0].innerHTML;
-            const precio = comida.children[0].children[1].innerHTML
+            const precio = comida.children[0].children[2].innerHTML
+            console.log(precio);
 
             btnUpLi.addEventListener('click', () => {
                 a++;
@@ -115,13 +117,14 @@ const getMenu = async () => {
 //------------EVENTO PARA AÑADIR A VISTA PREVIA DEL PLATO ---------//
 
             // const montoModificado = comida.children[0].children[2].children[1].innerHTML;
-            const btnAddPlato = comida.children[0].children[3];
+            const btnAddPlato = comida.children[0].children[4];
 
 
             btnAddPlato.addEventListener('click', e=> {
                 // console.log(plato);
                 // console.log(precio);
-                const cantidad = comida.children[0].children[2].children[1].innerHTML;
+                const cantidad = comida.children[0].children[3].children[1].innerHTML;
+                console.log(cantidad);
 
 
                 const PreviewOrden = document.createElement('li');
@@ -201,55 +204,55 @@ getMenu();
 
 // ------------ EVENTO PARA CREAR ORDENES ------- //
 
-form.addEventListener('submit', async e => {
-    e.preventDefault();
+// form.addEventListener('submit', async e => {
+//     e.preventDefault();
 
-    const newOrden = {
-        mesa: mesaInput.value,
-        orden: ordenInput.value,
-        status: 'Pendiente',
-        // date: Date.now()
-    }
-    try {
-        const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
-        console.log(data);
-        const ordenLi = document.createElement('li');
-            // console.log(ordenLi);
-            ordenLi.innerHTML = `
-                <li class="orden-item" id="${data.id}">
-				<p>Mesa: </p>
-                <p>${data.mesa}</p>
-                <p>Orden: </p>
-				<p>${data.orden}</p>
-                <p class="fecha">Fecha: ${data.date}</p>
-                <p class="hora">Hora: ${data.time}</p>
-                <p class="estado">${data.status}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-                <div id="content-cantidad">
-                <button class="disminuir">-</button>
-                <span name="" class="cantidad">0</span>
-                <button class="incrementar">+</button>
-                </div>
-			</li>
-            `;
+//     const newOrden = {
+//         mesa: mesaInput.value,
+//         orden: ordenInput.value,
+//         status: 'Pendiente',
+//         // date: Date.now()
+//     }
+//     try {
+//         const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
+//         console.log(data);
+//         const ordenLi = document.createElement('li');
+//             // console.log(ordenLi);
+//             ordenLi.innerHTML = `
+//                 <li class="orden-item" id="${data.id}">
+// 				<p>Mesa: </p>
+//                 <p>${data.mesa}</p>
+//                 <p>Orden: </p>
+// 				<p>${data.orden}</p>
+//                 <p class="fecha">Fecha: ${data.date}</p>
+//                 <p class="hora">Hora: ${data.time}</p>
+//                 <p class="estado">${data.status}</p>
+// 				<button class="btn-edit">✎</button>
+// 				<button class="btn-deleted">✖</button>
+//                 <div id="content-cantidad">
+//                 <button class="disminuir">-</button>
+//                 <span name="" class="cantidad">0</span>
+//                 <button class="incrementar">+</button>
+//                 </div>
+// 			</li>
+//             `;
 
-            contentOrdenes.append(ordenLi)
+//             contentOrdenes.append(ordenLi)
 
-    } finally {}
-})
+//     } finally {}
+// })
 
 
 const getOrdenes = async () => {
 
-    const newOrden = {
-        mesa: mesaInput.value,
-        orden: ordenInput.value
-        // image: imageRef.value
-    }
+    // const newOrden = {
+    //     mesa: mesaInput.value,
+    //     orden: ordenInput.value
+    //     // image: imageRef.value
+    // }
 
     try {
-        const { data } = await axios.get('/api/ordenes', newOrden);
+        const { data } = await axios.get('/api/ordenes');
         console.log(data);
 
         data.forEach(orden => {
