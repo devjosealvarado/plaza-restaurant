@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
+    background-color: rgba(245,245,245,255);
 }
 
 #contenedor {
@@ -18,8 +19,10 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -42,13 +45,14 @@ body {
     right: 0rem;
     top: -7rem;
     margin-top: 3.5rem;
-    background-color: #14532d;
+    background-color: #00afa8;
     color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
     display: flex;
     flex-direction: column; 
+    border-bottom-left-radius: 1rem;
 }
 
 .options .option a {
@@ -64,6 +68,11 @@ body {
     padding: .5rem;
 }
 
+.options .option {
+    display: flex;
+    justify-content: left;
+}
+
 
 .show-options {
     right: 0rem;
@@ -76,33 +85,41 @@ body {
 
 #form-content {
     grid-area: formulario;
-    
+    background-color: #008b87;
+    border-radius: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    margin: 1rem;
-    background-color: #fef9c3;
+    align-items: flex-start;
+    padding: 1rem 1rem 1rem 0;
+    background-color: #008b87;
     border-radius: 2rem;
-    color: #78350f;
     /* border-radius: 0.5rem; */
 }
 
 label {
-    margin-bottom: 1rem;
     margin-top: 1rem;
-    color: #78350f;
+    color: #fff;
 }
 
 #form input {
     border: none;
-    border-radius: 1rem;
+    border-bottom: 1px solid #fff;
+    background-color: #008b87;
+    color: #fff;
     outline: none;
     min-width: 15rem;
     min-height: 2rem;
+}
+
+#form input::placeholder {
+    color: #cccccc8e;
 }
 
 #reglasContraseña {
@@ -116,9 +133,15 @@ label {
     border-radius: 1rem;
     min-width: 8rem;
     min-height: 3rem;
-    background-color: #14532d;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
 
+}
+
+#btnSubmit:hover {
+    background-color: #006461;
+    color: #fff;
+    transition: all 0.3s ease;
 }
 
 /* ----- ENCARGADOS --------*/

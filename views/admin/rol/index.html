@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="normalize.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -13,7 +16,7 @@
     <div id="contenedor">
         <div id="nav-bar">
             <div id="logo">
-                <p class="plaza">PLAZA RESTAURANT</p>
+                <h1 class="plaza">PLAZA RESTAURANT</h1>
             </div>
             <div id="menu">
                 <!-- <p class="log-regis">Iniciar sesión</p>
@@ -25,34 +28,34 @@
                 </div>
             </div>
         </div>
-        <ul class="options">
+        <div class="options">
             <li class="option"><a href="/admin/7865432">Inicio</a></li>
             <li class="option"><a href="/admin/87689/add-menu">Crear plato</a></li>
             <li class="option"><a id="btn-logout">Cerrar sesión</a></li>
-        </ul>
+        </div>
         
         <!----------- ASIGNAR ROL --------->
 
         <h1>Asignar rol</h1>
         <div id="form-content">
             <form id="form">
-                <label for="name">Nombre</label>
-                <input type="text" id="name" >
-                <label for="lastName">Apellido</label>
-                <input type="text" id="lastName">
-                <label for="ci">Cedula</label>
-                <input type="text" id="ci" placeholder="v12345678">
-                <label for="address">Dirección</label>
-                <input type="text" id="address">
-                <label for="email">Correo electronico</label>
-                <input type="email" name="" id="email" placeholder="example@qwe.com">
+                <label for="name">Nombre *</label>
+                <input type="text" id="name" required>
+                <label for="lastName">Apellido *</label>
+                <input type="text" id="lastName" required>
+                <label for="ci">Cédula *</label>
+                <input type="text" id="ci" placeholder="12345678" required>
+                <label for="address">Dirección *</label>
+                <input type="text" id="address" required>
+                <label for="email">Correo electrónico *</label>
+                <input type="email" name="" id="email" placeholder="example@qwe.com" required>
                 <label for="password">Contraseña</label>
-                <input type="text" id="password">
+                <input type="text" id="password" required>
                 <label for="passwordMatch">Repetir contraseña</label>
-                <input type="text" id="passwordMatch">
+                <input type="text" id="passwordMatch" required>
                 <label for="rol">Rol</label>
                 <select name="" id="rol" value="Seleccione un rol" required>
-                    <option value="" disabled selected>Seleccion un rol</option>
+                    <option value="" disabled selected>Selecciona un rol</option>
                     <option value="Encargado">Encargado</option>
                     <option value="Mesero">Mesero</option>
                 </select>
