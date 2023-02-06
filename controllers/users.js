@@ -77,11 +77,11 @@ usersRouter.get('/', async (request, response) => {
     }
 
     const encargados = await User.find(this.all);
-    console.log(typeof(encargados));
+    // console.log(typeof(encargados));
     // const meseros = await User.find({rol: 'Mesero'});
     // const  cargos  = (encargados + ',' + meseros)
 
-    console.log(encargados);
+    // console.log(encargados);
 
     response.status(200).json(encargados);
 

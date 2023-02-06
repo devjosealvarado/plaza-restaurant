@@ -150,7 +150,7 @@ label {
 }
 
 #content-btn {
-    width: 15rem;
+    
     display: flex;
-    justify-content: center;
+    align-self: center;
 }

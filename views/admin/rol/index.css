@@ -6,6 +6,7 @@ body {
 
 #contenedor {
     display: grid;
+    text-align: center;
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
@@ -15,6 +16,10 @@ body {
                         "formulario"
                         "btn-encargados"
                         "encargados";
+}
+
+#contenedor h2 {
+    color: rgb(99, 99, 99);
 }
 
 #nav-bar {
@@ -165,6 +170,12 @@ label {
     color: #fff;
 }
 
+#content-btn {
+    
+    display: flex;
+    align-self: center;
+}
+
 /* ESTILOS PARA CADA ENCARGADO */
 
 #roles li {
@@ -174,9 +185,23 @@ label {
 #roles li .contacto-item {
     display: flex;
     flex-direction: column;
+    justify-content: start;
     align-items: center;
-    background-color: #d9f99d;
-    color: rgb(99, 99, 99);
+    background-color: #00afa8;
+    color: #fff;
     margin: 1rem;
     border-radius: 2rem;
+    padding: 1rem;
+}
+
+#roles li .contacto-item span {
+    padding-bottom: 1rem;
+}
+
+
+#roles li .contacto-item .btn-deleted {
+    width: 2rem;
+    color: rgb(131, 0, 0);
+    display: flex;
+    align-self: flex-start;
 }
