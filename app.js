@@ -21,12 +21,12 @@ const ordenRouter = require('./controllers/ordenes');
 const ordenEncargadoRouter = require('./controllers/ordenesEncargado')
 const multerRouter = require('./controllers/multer');
 const logoutRouter = require('./controllers/logout');
-
+const { MONGO_URI } = require('./config');
 
 
 (async () => {
     try {
-        await moongose.connect(process.env.MONGO_URI_TEST)
+        await moongose.connect(MONGO_URI)
         console.log('Conectado a Mongo DB');
     } catch (error) {
         console.log(error);

@@ -1,9 +1,10 @@
 const app = require('./app');
 const http = require('http');
+const { PORT } = require('./config');
 
 const server = http.createServer(app);
 
-server.listen(5500, () => {
+server.listen(PORT, () => {
     
     console.log('El servidor esta corriendo');
 })
