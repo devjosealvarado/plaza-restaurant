@@ -129,11 +129,11 @@ const getMenu = async () => {
 
                 const PreviewOrden = document.createElement('li');
                 PreviewOrden.innerHTML = `
-                    <li class="preview-item">
-                    <p>${cantidad + ' ' + plato}</p>
-                    <p class="price">${precio}</p>
+                    <div class="preview-item">
+                    <span>${cantidad + ' ' + plato}</span>
+                    <span class="price" style="display: none">${precio}</span>
                     <span class="cantidadTotal" style="display: none;">${cantidad}</span>
-                    </li>
+                    </div>
                 `;
 
                 // btnDeleted.style.display = '';
