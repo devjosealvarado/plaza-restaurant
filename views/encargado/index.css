@@ -196,3 +196,14 @@ label {
     width: 2rem;
     color: yellow;
 }
+
+.content-btn-editing {
+    width: 100%;
+}
+
+.btn-editing {
+    width: 3rem;
+    color: #fff;
+    display: flex;
+    align-self: center;
+}
