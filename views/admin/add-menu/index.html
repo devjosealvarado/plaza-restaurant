@@ -46,9 +46,9 @@
         <div id="form-content">
             <form  id="form" action="/api/img" method="post" enctype="multipart/form-data">
                 <label for="meal">Plato</label>
-                <input type="text" id="meal">
+                <input type="text" id="meal" required>
                 <label for="price">Precio $</label>
-                <input type="number" step="0.01" id="price">
+                <input type="number" step="0.01" id="price" required>
                 <!-- <label for="image">Image</label>
                 <input type="file" id="image" name="image"> -->
                 <button type="submit" id="btnSubmit">Registrar</button>
