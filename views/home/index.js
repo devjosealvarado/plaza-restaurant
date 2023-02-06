@@ -22,17 +22,17 @@ const getMenu = async () => {
     try {
         const { data } = await axios.get('/api/menuPublic');
     console.log(data);
-        let dataPlato = [];
-        let pricesss = [];
+        // let dataPlato = [];
+        // let pricesss = [];
 
-        for (let index = 0; index < data.length; index++) {
-            dataPlato.push(data[index].plato);
-            pricesss.push(data[index].price)
-        }
-        console.log(dataPlato.sort());
-        const dataPlatoAlfb = dataPlato.sort()
-        console.log(dataPlatoAlfb);
-        console.log(pricesss);
+        // for (let index = 0; index < data.length; index++) {
+        //     dataPlato.push(data[index].plato);
+        //     pricesss.push(data[index].price)
+        // }
+        // console.log(dataPlato.sort());
+        // const dataPlatoAlfb = dataPlato.sort()
+        // console.log(dataPlatoAlfb);
+        // console.log(pricesss);
 
         // dataPlato.push([data[index].plato, data[index].price]);
 
