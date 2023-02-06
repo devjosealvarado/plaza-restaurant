@@ -42,6 +42,7 @@ form.addEventListener('submit', async e => {
             console.log(data);
             if (data) {
                 alert(`Se registro ${plato.value} como nuevo plato`)
+                window.location.reload();
             }
             plato.value= '';
             price.value= '';
@@ -62,18 +63,29 @@ const getMenu = async () => {
 
     try {
         const { data } = await axios.get('/api/menus', newMenu);
-    console.log(data);
+    // console.log(data);
 
         data.forEach(meal => {
             const comida = document.createElement('li');
             comida.innerHTML = `
-                <li class="comida-item" id="${meal.id}">
-				<p class="plato">${meal.plato}</p>
-                <p class="moneda">$</p>
-				<p class="precio">${meal.price}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-			</li>
+                <div class="comida-item" id="${meal.id}">
+				<div class="content-plato-precio">
+                <span class="plato">${meal.plato}</span>
+				<span class="precio">$${meal.price}</span>
+                </div>
+				<div class="btns">
+                <div class="btn-edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 btn-edit">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                    </svg>
+                </div>
+				<div class="btn-deleted">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                    </svg>                            
+                </div>
+                </div>
+			</div>
             `;
 
             comidas.append(comida)
@@ -86,16 +98,7 @@ const getMenu = async () => {
 getMenu();
 // const upload = multer({ dest: 'uploads/' });
 
-// EVENTO PARA REFRESCAR LISTA DE PLATOS
 
-const showComidas = document.querySelector('#show-comidas');
-
-showComidas.addEventListener('click', e => {
-    while (comidas.firstChild) {
-        comidas.removeChild(comidas.firstChild)
-    }
-    getMenu();
-})
 
 // EVENTO PARA ELIMINAR COMIDAS
 
@@ -112,12 +115,20 @@ comidas.addEventListener('click', async e => {
 comidas.addEventListener('click', async e => {
     if (e.target.classList.contains('btn-edit')) {
         const id = e.target.parentElement.id;
-		const comidaItem = e.target.parentElement;
-       console.log('si');
-    //    console.log(e.target.parentElement.parentElement.children[0].innerHTML);
+		const comidaItem = e.target.parentElement.parentElement.parentElement;
+        console.log(comidaItem);
+    //    console.log('si');
+    //    console.log(e.target.parentElement.children[1].innerHTML);
+        const precioString = e.target.parentElement.parentElement.parentElement.children[0].children[1].innerHTML;
+        const comida = e.target.parentElement.parentElement.parentElement.children[0].children[0].innerHTML
+        console.log(comida);
+        console.log(precioString);
+        const precio = precioString.split('$');
+        console.log(precio);
+       //    console.log(e.target.parentElement.parentElement.children[0].innerHTML);
        comidaItem.innerHTML = `
-        <input type="text" class="meal-edit" value="${e.target.parentElement.children[0].innerHTML}">
-        <input type="text" class="price-edit" maxlength="11" value="${e.target.parentElement.children[2].innerHTML}">
+        <input type="text" class="meal-edit" value="${comida}">
+        <input type="number" class="price-edit" step="0.01" maxlength="11" value="${precio[1]}">
         <button class="btn-editing">✔</button>
         `;
     } else if (e.target.classList.contains('btn-editing')) {
@@ -130,8 +141,8 @@ comidas.addEventListener('click', async e => {
         if (isValid == true) {
             comidaItem.innerHTML = `
             <p>${plato.value}</p>
-            <p>$</p>
-            <p>${price.value}</p>
+            
+            <p>$${price.value}</p>
             <button class="btn-edit">✎</button>
             <button class="btn-deleted">✖</button>
             `;
