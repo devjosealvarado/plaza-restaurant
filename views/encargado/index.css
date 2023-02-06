@@ -1,6 +1,7 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
+    background-color: rgba(245,245,245,255);
 }
 
 #contenedor {
@@ -8,7 +9,7 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    grid-template-rows: 3.5rem 6rem auto auto;
+    grid-template-rows: 3.5rem 8rem auto auto;
     grid-template-areas: "header"
                         "back-present"
                         "form-content"
@@ -17,8 +18,10 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    border-bottom: 5px solid #00afa8;
+    font-size: 0.7rem;
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -32,7 +35,7 @@ body {
 }
 
 #button-menu {
-    color: #78350f;
+    color: #000;
     width: 2rem;
 }
 
@@ -70,17 +73,19 @@ body {
     right: 0rem;
     top: -7rem;
     margin-top: 3.5rem;
-    background-color: #14532d;
+    background-color: #00afa8;
+    color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
     z-index: 1;
-    border-radius: 0 0.3rem;
+    border-bottom-left-radius: 1rem;
     
 }
 
 .options .option a {
     text-decoration: none;
     color: #fff;
+    left: 0;
 }
 
 .options .option a:visited {
@@ -91,12 +96,14 @@ body {
     padding: .5rem;
 }
 
+.options .option {
+    display: flex;
+    justify-content: left;
+}
 
 .show-options {
     right: 0rem;
     top: 0;
-    
-    
 }
 
 
@@ -148,11 +155,8 @@ label {
     color: rgb(99, 99, 99);
 }
 
-#ordenes li {
-    list-style: none;
-}
 
-#ordenes li .orden-item {
+#ordenes div .orden-item {
     display: flex;
     flex-direction: column;
     align-items: center;

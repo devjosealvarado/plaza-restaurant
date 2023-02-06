@@ -28,80 +28,66 @@ logoutBtn.addEventListener('click', async e => {
 })
 
 
-form.addEventListener('submit', async e => {
-    e.preventDefault();
+// form.addEventListener('submit', async e => {
+//     e.preventDefault();
 
-    const newOrden = {
-        mesa: mesaInput.value,
-        orden: ordenInput.value,
-        status: 'Pendiente',
-        // date: Date.now()
-    }
-    try {
-        const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
-        console.log(data);
-        const ordenLi = document.createElement('li');
-            // console.log(ordenLi);
-            ordenLi.innerHTML = `
-                <li class="orden-item" id="${data.id}">
-				<p>Mesero:${data.mesero}</p>
-                <p>Mesa: </p>
-                <p>${data.mesa}</p>
-                <p>Orden: </p>
-				<p>${data.orden}</p>
-                <p class="fecha">Fecha: ${data.date}</p>
-                <p class="hora">Hora: ${data.time}</p>
-                <p class="estado">${data.status}</p>
-				<button class="btn-edit">✎</button>
-				<button class="btn-deleted">✖</button>
-			</li>
-            `;
+//     const newOrden = {
+//         mesa: mesaInput.value,
+//         orden: ordenInput.value,
+//         status: 'Pendiente',
+//         // date: Date.now()
+//     }
+//     try {
+//         const { data } = await axios.post('/api/ordenes', newOrden, { withCredentials: true});
+//         console.log(data);
+//         const ordenLi = document.createElement('li');
+//             // console.log(ordenLi);
+//             ordenLi.innerHTML = `
+//                 <li class="orden-item" id="${data.id}">
+// 				<p>Mesero:${data.mesero}</p>
+//                 <p>Mesa: </p>
+//                 <p>${data.mesa}</p>
+//                 <p>Orden: </p>
+// 				<p>${data.orden}</p>
+//                 <p class="fecha">Fecha: ${data.date}</p>
+//                 <p class="hora">Hora: ${data.time}</p>
+//                 <p class="estado">${data.status}</p>
+// 				<button class="btn-edit">✎</button>
+// 				<button class="btn-deleted">✖</button>
+// 			</li>
+//             `;
 
-            contentOrdenes.append(ordenLi)
+//             contentOrdenes.append(ordenLi)
         
-    } finally {}
-})
+//     } finally {}
+// })
 
 
+// EVENTO PARA PEDIR LAS ORDENES
 
 const getOrdenes = async () => {
     while (contentOrdenes.firstChild) {
         contentOrdenes.removeChild(contentOrdenes.firstChild)
     }
 
-    // const newOrden = {
-    //     mesa: mesaInput.value,
-    //     orden: ordenInput.value
-    //     // image: imageRef.value
-    // }
-
     try {
         const { data } = await axios.get('/api/ordenesEncargado');
     console.log(data);
 
-        
-
-  
-    
-
-
         data.forEach(ordenItem => {
-            const ordenLi = document.createElement('li');
+            const ordenLi = document.createElement('div');
             // console.log(ordenLi);
             ordenLi.innerHTML = `
-                <li class="orden-item" id="${ordenItem.id}">
-				<p>Mesero: ${ordenItem.mesero}</p>
-                <p>Mesa: </p>
-                <p>${ordenItem.mesa}</p>
-                <p>Orden: </p>
-				<p>${ordenItem.orden}</p>
-                <p class="fecha">Fecha: ${ordenItem.date}</p>
-                <p class="hora">Hora: ${ordenItem.time}</p>
-                <p>Estado: </p>
-                <p class="estado">${ordenItem.status}</p>
+                <div class="orden-item" id="${ordenItem.id}">
+				<span>Mesero: ${ordenItem.mesero}</span>
+                <span>Mesa: ${ordenItem.mesa}</span>
+                <span>Orden: ${ordenItem.orden}</span>
+                <span class="fecha">Fecha: ${ordenItem.date}</span>
+                <span class="hora">Hora: ${ordenItem.time}</span>
+                <span>Estado: ${ordenItem.status}</span>
 				<button class="btn-edit">✎</button>
 				<button class="btn-deleted">✖</button>
-			</li>
+			</div>
             `;
 
             contentOrdenes.append(ordenLi)
