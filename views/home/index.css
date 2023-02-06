@@ -1,6 +1,8 @@
 body {
     height: 100vh;
     font-family: 'Varela Round', sans-serif;
+    background-color: rgba(245,245,245,255);
+
 }
 
 #contenedor {
@@ -9,7 +11,7 @@ body {
     /* gap: 20px; */
     grid-template-columns: 1fr;
     /* grid-template-rows: 1fr 1fr 1fr 1fr; */
-    grid-template-rows: 3.5rem 6rem auto auto auto;
+    grid-template-rows: 3.5rem 8rem auto auto auto;
     grid-template-areas: "header"
                         "back-present"
                         "promociones"
@@ -23,8 +25,8 @@ body {
 
 #nav-bar {
     grid-area: header;
-    background-color: #fef9c3;
-    color: #78350f;
+    background-color: rgba(245,245,245,255);
+    color: #6d6d6d;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -81,7 +83,7 @@ body {
     right: 0rem;
     top: -5rem;
     margin-top: 3.5rem;
-    background-color: #14532d;
+    background-color: #00afa8;
     color: #ffff;
     transition: all 0.4s ease-in-out;
     list-style: none;
@@ -119,16 +121,22 @@ body {
     grid-area: menu;
 }
 
+#menu-list {
+    background-color: #00afa8;
+}
+
 #menu-list li {
     list-style: none;
+    
 }
 
 #menu-list li .comida-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    background-color: #d9f99d;
-    color: rgb(99, 99, 99);
+    background-color: #00afa8;
+    color: #fff;
     margin: 1rem;
     border-radius: 2rem;
 

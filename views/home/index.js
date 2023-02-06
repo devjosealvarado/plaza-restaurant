@@ -21,15 +21,28 @@ const getMenu = async () => {
 
     try {
         const { data } = await axios.get('/api/menuPublic');
-    // console.log(data);
+    console.log(data);
+        let dataPlato = [];
+        let pricesss = [];
+
+        for (let index = 0; index < data.length; index++) {
+            dataPlato.push(data[index].plato);
+            pricesss.push(data[index].price)
+        }
+        console.log(dataPlato.sort());
+        const dataPlatoAlfb = dataPlato.sort()
+        console.log(dataPlatoAlfb);
+        console.log(pricesss);
+
+        // dataPlato.push([data[index].plato, data[index].price]);
 
         data.forEach(meal => {
             const menuItem = document.createElement('li');
             menuItem.innerHTML = `
-                <li class="comida-item" id="${meal.id}">
-				<p>${meal.plato}</p>
-				<p>$${meal.price}</p>
-			</li>
+                <div class="comida-item" id="${meal.id}">
+				<span>${meal.plato}</span>
+                <span>$${meal.price}</span>
+			</div>
             `;
 
             menu.append(menuItem)

@@ -83,56 +83,23 @@ form.addEventListener ('submit', async e => {
     const { data } = await axios.post('/api/usersEncargados', newUser, { withCredentials: true});
         console.log(data);
         if (data === 'Created') {
-            alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo encargado`)
+            alert(`Se registro a ${nameInput.value + ' ' + lastNameInput.value} como nuevo ${rolInput.value}`)
             window.location.reload()
         } else {
             console.log('no');
-            // window.location.pathname='/login';
         }
-    // const nombre = nameInput.value;
-    // const apellido = lastNameInput.value;
-    // const ci = ciInput.value;
-    // const address = addressInput.value;
-    // const email = emailInput.value;
-    // const password = passwordInput.value;
-    // console.log({data});
-
-
-    //     const rol = document.createElement('li');
-    // rol.innerHTML =`
-    // 	<li class="contacto-item" id="${data}">
-    // 		<p>${nombre}</p>
-    // 		<p>${apellido}</p>
-    //         <p>${ci}</p>
-    //         <p>${address}</p>
-    //         <p>${email}</p>
-    // 		<button class="btn-edit">✎</button>
-    // 		<button class="btn-deleted">✖</button>
-    // 	</li>
-    // `;
-
-    // roles.append(rol);
 
     } finally {}
 
-    nameInput.value= '';
-    lastNameInput.value='';
-    ciInput.value='';
-    addressInput.value='';
-    emailInput.value='';
-    passwordInput.value='';
-    matchInput.value= '';
-    rolInput.value='';
-    // input_text.value = '';
-    // input_numero.value = '';
-
-
-
-    // validationInput = false;
-    // input_numero.classList = '';
-
-
-
+    // nameInput.value= '';
+    // lastNameInput.value='';
+    // ciInput.value='';
+    // addressInput.value='';
+    // emailInput.value='';
+    // passwordInput.value='';
+    // matchInput.value= '';
+    // rolInput.value='';
+    
 
 })
 
@@ -140,14 +107,7 @@ getEncargados();
 
 // EVENTO PARA REFRESCAR LISTA DE ENCARGADOS
 
-const showEncargados = document.querySelector('#show-encargados');
 
-showEncargados.addEventListener('click', e => {
-    while (roles.firstChild) {
-        roles.removeChild(roles.firstChild)
-    }
-    getEncargados();
-});
 
 
 // EVENTO PARA ELIMINAR ENCARGADOS
