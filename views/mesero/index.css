@@ -21,7 +21,7 @@ body {
 }
 
 #contenedor h2 {
-    color: rgb(255, 255, 255);
+    color: #6d6d6d;
 }
 
 #nav-bar {
@@ -45,6 +45,7 @@ body {
 #button-menu {
     color: #78350f;
     width: 2rem;
+    cursor: pointer;
 }
 
 #back-present {
@@ -98,6 +99,7 @@ body {
     text-decoration: none;
     color: #fff;
     left: 0;
+    cursor: pointer;
 }
 
 .options .option a:visited {

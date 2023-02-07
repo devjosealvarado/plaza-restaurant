@@ -91,6 +91,7 @@ body {
     text-decoration: none;
     color: #fff;
     left: 0;
+    cursor: pointer;
 }
 
 .options .option a:visited {
@@ -150,7 +151,7 @@ label {
     min-height: 3rem;
     background-color: #14532d;
     color: #fff;
-
+    cursor: pointer;
 }
 
 /* -------- ORDENES ----------- */

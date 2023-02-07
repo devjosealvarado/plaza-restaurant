@@ -59,6 +59,7 @@ body {
     text-decoration: none;
     color: #fff;
     left: 0;
+    cursor: pointer;
 }
 
 .options .option a:visited {
@@ -194,6 +195,7 @@ label {
     margin: 1rem;
     border-radius: 0.5rem;
     border: none;
+    cursor: pointer;
 }
 
 #comidas .comida-item .edit-btn {
