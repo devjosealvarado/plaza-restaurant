@@ -6,6 +6,8 @@ ordenRouter.post('/', async (request, response) => {
     const { user } = request;
     // console.log(user);
     const fecha = new Date();
+    const desplazamientoHorario = -240;
+    fecha.setTime(fecha.getTime()+(desplazamientoHorario*60*1000))
     // console.log(typeof(fecha));
     const fechaYear = fecha.getFullYear().toString();
     const fechaMes = (fecha.getMonth() + 1).toString();
